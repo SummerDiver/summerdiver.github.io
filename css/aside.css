@@ -1,0 +1,112 @@
+.aside-card {
+  background: #edcfa9;
+  border-radius: 5px;
+  padding: 16px;
+  text-align: center;
+}
+.aside-card + .aside-card {
+  margin-top: 15px;
+}
+.toc-content {
+  max-height: calc(100vh - 250px);
+  color: #865439;
+  background: #ffebc9;
+  border-radius: 5px;
+  overflow: auto;
+}
+.aside-toc h3 {
+  margin: 0 0 10px;
+}
+.aside-toc ol {
+  list-style: none;
+  padding: 0;
+  padding-left: 8px;
+  margin: 0;
+  text-align: left;
+}
+.post-toc-item {
+  line-height: 1.8;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.post-toc-link {
+  opacity: 0.5;
+}
+.post-toc-link:hover {
+  opacity: 0.75;
+}
+.toc-reached {
+  font-weight: bold;
+  opacity: 1;
+}
+.author-avatar {
+  width: 125px;
+  height: 125px;
+  border-radius: 50%;
+  margin: auto;
+  overflow: hidden;
+}
+.author-avatar img {
+  width: 100%;
+  height: 100%;
+}
+.author-name {
+  margin: 10px;
+}
+.author-motto {
+  color: #865439;
+  font-size: 13px;
+}
+.site-state {
+  display: flex;
+}
+.site-state-item {
+  flex: 1;
+  display: inline-block;
+  padding: 0 10px;
+}
+.site-state-item span {
+  display: block;
+}
+.site-state-item-count {
+  color: #333;
+  font-weight: bold;
+}
+.site-state-item-name {
+  color: #865439;
+  font-size: 13px;
+  margin-top: 3px;
+}
+.friends div:first-child {
+  font-weight: bold;
+  margin-bottom: 6px;
+  text-align: left;
+}
+.no-friends {
+  color: #865439;
+  margin-top: 15px;
+}
+.no-friends span:first-of-type {
+  display: inline-block;
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+.friends-list {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 14px;
+  padding: 0;
+  padding-left: 20px;
+  margin: 0;
+  text-align: left;
+}
+.friends-link-item {
+  display: inline-block;
+  min-width: 50%;
+  margin: 10px 0 0;
+}
+.friends-link-item a {
+  position: relative;
+  color: #865439;
+}

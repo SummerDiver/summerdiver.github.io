@@ -1,0 +1,244 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript 布尔操作符的短路特性 - 鼠熊部落格</title>
+    
+        <!-- stylesheets list from _config.yml -->
+        
+            <link rel="stylesheet" href="/css/chippy.css">
+        
+    
+<meta name="generator" content="Hexo 6.2.0"></head>
+<body>
+<nav class="menu-outer">
+    <div class="menu-inner">
+        
+            <a class="menu-inner-item" href="/">
+                <span class="menu-inner-item-icon"></span>
+                <span class="menu-inner-item-text">首页</span>
+            </a>
+        
+            <a class="menu-inner-item" href="/about">
+                <span class="menu-inner-item-icon"></span>
+                <span class="menu-inner-item-text">关于我</span>
+            </a>
+        
+            <a class="menu-inner-item" href="/archives">
+                <span class="menu-inner-item-icon"></span>
+                <span class="menu-inner-item-text">归档</span>
+            </a>
+        
+    </div>
+</nav>
+
+<header class="header-outer">
+    <div class="header-inner">
+        <div class="header-info">
+            
+                <h1 class="header-info-title">
+                    Chipmunk &amp; Panda
+                </h1>
+            
+            
+                <h3 class="header-info-subtitle">
+                    -- 鼠熊部落格
+                </h3>
+            
+            
+                <p class="header-info-motto">
+                    All work and no play makes Jack a dull boy.
+                </p>
+            
+            <div class="header-info-contact">
+                <a target="_blank" rel="noopener" href="https://github.com/SummerDiver" class="header-info-contact-icon">
+                    <i class="icon-github"></i>
+                </a>
+                <a target="_blank" rel="noopener" href="https://weibo.com/u/7390819624" class="header-info-contact-icon">
+                    <i class="icon-sina-weibo"></i>
+                </a>
+                <a href="mailto:summerdiver@yeah.net" class="header-info-contact-icon">
+                    <i class="icon-mail4"></i>
+                </a>
+                <a href="" class="header-info-contact-icon" onclick="return false">
+                    <i class="icon-IE"></i>
+                </a>
+            </div>
+        </div>
+        <a href="#content" class="header-arrow">
+            <i class="icon-forward2"></i>
+        </a>
+    </div>
+</header>
+
+<div id="content" class="content-outer clearfix">
+    <aside id="content-aside" class="content-aside">
+        
+
+    <div class="aside-card aside-toc">
+        <h3>文章目录</h3>
+        <div class="toc-content">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E9%80%BB%E8%BE%91%E4%B8%8E"><span class="post-toc-number">1.</span> <span class="post-toc-text">逻辑与</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E9%80%BB%E8%BE%91%E6%88%96"><span class="post-toc-number">2.</span> <span class="post-toc-text">逻辑或</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E7%9F%AD%E8%B7%AF%E7%89%B9%E6%80%A7%E7%94%A8%E4%BA%8E%E5%8F%98%E9%87%8F%E8%B5%8B%E5%80%BC"><span class="post-toc-number">3.</span> <span class="post-toc-text">短路特性用于变量赋值</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E8%AF%B4%E6%98%8E"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">说明</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">例题</span></a></li></ol></li></ol>
+        </div>
+    </div>
+
+
+<div class="aside-card aside-ov">
+    <div class="author">
+        <div class="author-avatar">
+            <img src="/images/avatar.jpg">
+        </div>
+        <h4 class="author-name">Summer Diver</h4>
+        <p class="author-motto">自家慢诩便便腹，开卷方知未读书。</p>
+    </div>
+    <div class="divider-horizontal"></div>
+    <div class="site-state">
+        <a class="site-state-item" href="/archives">
+            <span class="site-state-item-count">12</span>
+            <span class="site-state-item-name">归档</span>
+        </a>
+        <div class="divider-vertical"></div>
+        <a class="site-state-item" href="/categories">
+            <span class="site-state-item-count">3</span>
+            <span class="site-state-item-name">分类</span>
+        </a>
+        <div class="divider-vertical"></div>
+        <a class="site-state-item" href="/tags">
+            <span class="site-state-item-count">9</span>
+            <span class="site-state-item-name">标签</span>
+        </a>
+    </div>
+    <div class="divider-horizontal"></div>
+    <div class="friends">
+        <div>
+            <i class="icon-link"></i>&nbsp;友情链接
+        </div>
+        
+            <div class="no-friends">
+                <span class="icon-tongue"></span><br>
+                <span>朋友都没有，好像一条狗</span>
+            </div>
+        
+        <ul class="friends-list">
+            
+        </ul>
+    </div>
+</div>
+
+    </aside>
+    <main class="content-inner">
+        <article id="post">
+    <div class="post-header">
+    
+        <h1 class="post-title" href="/2022/03/14/JavaScript-%E5%B8%83%E5%B0%94%E6%93%8D%E4%BD%9C%E7%AC%A6%E7%9A%84%E7%9F%AD%E8%B7%AF%E7%89%B9%E6%80%A7/">JavaScript 布尔操作符的短路特性</h1>
+    
+
+    <div class="post-meta">
+        <time class="post-date" datetime="2022-03-14T04:14:41.000Z">
+            <i class="icon-calendar"></i>&nbsp;2022-03-14
+        </time>
+
+        
+            <span class="post-categories">
+                        <i class="icon-folder">&nbsp;</i>
+                        <a class="post-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+                    </span>
+        
+
+        
+            <span class="post-tags">
+                        <i class="icon-price-tags">&nbsp;</i>
+                        <a class="post-tag-link" href="/tags/JavaScript/" rel="tag">#JavaScript</a>
+                    </span>
+        
+    </div>
+</div>
+
+    
+
+    <p>JavaScript 中布尔操作符包括逻辑非、逻辑与、逻辑或，其中，逻辑与、逻辑或具有短路特性，即若第一个操作数决定了结果，则不再对第二个操作数求值。</p>
+<span id="more"></span>
+
+<h1 id="逻辑与"><a href="#逻辑与" class="headerlink" title="逻辑与"></a>逻辑与</h1><p>逻辑与表示为 <code>&amp;&amp;</code>，仅当两操作数均为 <code>true</code> 时返回 <code>true</code>，否则返回 <code>false</code>。当有操作数不是布尔值时，逻辑与并不一定返回布尔值，而是遵循如下规则：</p>
+<ul>
+<li>若第一个操作数是对象，则返回第二个操作数。</li>
+<li>若第二个数是对象，则仅当第一个操作数求值为 <code>true</code> 时返回该对象。</li>
+<li>若两个操作数均为对象，则返回第二个操作数。</li>
+<li>若任一操作数为 <code>null</code> &#x2F; <code>NaN</code> &#x2F; <code>undefined</code>，则返回 <code>null</code> &#x2F; <code>NaN</code> &#x2F; <code>undefined</code>。</li>
+</ul>
+<p>对于逻辑与操作符，当第一个操作数为 <code>false</code>，则直接忽略第二个操作数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-literal">true</span> &amp;&amp; someUndeclaredVariable);  <span class="hljs-comment">// 报错：变量未定义</span><br><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-literal">false</span> &amp;&amp; someUndeclaredVariable);  <span class="hljs-comment">// false</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="逻辑或"><a href="#逻辑或" class="headerlink" title="逻辑或"></a>逻辑或</h1><p>逻辑或表示为 <code>||</code>，仅当两操作数均为 <code>false</code> 时返回 <code>false</code>，否则返回 <code>true</code>。当有操作数不是布尔值时，逻辑或并不一定返回布尔值，而是遵循如下规则：</p>
+<ul>
+<li>若第一个操作数是对象，则返回第一个操作数。</li>
+<li>若第一个对象求值为 <code>false</code>，则返回第二个操作数。</li>
+<li>若两个操作数均为对象，则返回第一个操作数。</li>
+<li>若两操作数均为 <code>null</code> &#x2F; <code>NaN</code> &#x2F; <code>undefined</code>，则返回 <code>null</code> &#x2F; <code>NaN</code> &#x2F; <code>undefined</code>。</li>
+</ul>
+<p>对于逻辑或操作符，当第一个操作数为 <code>true</code>，则直接忽略第二个操作数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-literal">false</span> || someUndeclaredVariable);  <span class="hljs-comment">// 报错：变量未定义</span><br><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-literal">true</span> || someUndeclaredVariable);  <span class="hljs-comment">// true</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="短路特性用于变量赋值"><a href="#短路特性用于变量赋值" class="headerlink" title="短路特性用于变量赋值"></a>短路特性用于变量赋值</h1><h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>利用逻辑与、逻辑或的短路特性，可以选择将两个数值中非空的一个赋值给变量，以逻辑或为例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> result = first || second;<br></code></pre></td></tr></table></figure>
+
+<p>当 <code>first</code> 非空，则将其赋值给 <code>result</code>，否则会将 <code>second</code> 赋值给 <code>result</code>，即将 <code>first</code> 视为首选值，当首选值为空时，再考虑备选值 <code>second</code>。</p>
+<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><blockquote>
+<p>求 <code>1+2+...+n</code> ，要求不能使用乘除法、for、while、if、else、switch、case等关键字及条件判断语句（A ? B : C）。</p>
+</blockquote>
+<p>本题如果没有那堆限制，直接暴力循环或者等差数列求和公式就可以了，然而有了那堆限制，使得只能用点巧妙的方法。解法如下，使用逻辑操作符的短路特性就可以轻松解决：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> sumNums = <span class="hljs-keyword">function</span> (<span class="hljs-params">n</span>) &#123;<br>    <span class="hljs-keyword">return</span> n &gt; <span class="hljs-number">0</span> &amp;&amp; (n + <span class="hljs-title function_">sumNums</span>(n - <span class="hljs-number">1</span>));<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+
+    
+        
+        
+        <div class="post-nav">
+            <div class="post-nav-item">
+                
+                    <a href="/2022/03/25/Windows-%E4%B8%8B%E4%BD%BF%E7%94%A8-Anaconda-%E5%AE%89%E8%A3%85-TensorFlow-2-3-%E5%B9%B6%E6%94%AF%E6%8C%81-GPU/" rel="prev" title="Windows 下使用 Anaconda 安装 TensorFlow 2.3 并支持 GPU">
+                        <i class="icon-arrow_back_ios"></i>&nbsp;Windows 下使用 Anaconda 安装 TensorFlow 2.3 并支持 GPU
+                    </a>
+                
+            </div>
+            <div class="post-nav-item">
+                
+                    <a href="/2022/02/10/%E4%B8%89%E6%A0%8F%E8%87%AA%E9%80%82%E5%BA%94%E2%80%94%E2%80%94%E5%9C%A3%E6%9D%AF%E5%B8%83%E5%B1%80%E4%B8%8E%E5%8F%8C%E9%A3%9E%E7%BF%BC%E5%B8%83%E5%B1%80/" rel="next" title="三栏自适应——圣杯布局与双飞翼布局">
+                        三栏自适应——圣杯布局与双飞翼布局&nbsp;<i class="icon-arrow_forward_ios"></i>
+                    </a>
+                
+            </div>
+        </div>
+    
+</article>
+
+    </main>
+</div>
+
+<footer class="footer-outer">
+    <div class="footer-inner">
+        <div class="copyright">
+            Copyright © 2021~2022 <a target="_blank" rel="noopener" href="https://github.com/SummerDiver"><i
+                        class="icon-pacmanr"></i>Summer Diver<i class="icon-pacmanl"></i></a> <br>
+            Powered by <a target="_blank" rel="noopener" href="http://hexo.io">Hexo<i class="icon-new-tab"></i></a>
+            <br>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- scripts list from theme config.yml -->
+    
+        <script src="/js/jquery-3.6.0.min.js"></script>
+    
+        <script src="/js/chippy.js"></script>
+    
+        <script src="/js/menubar.js"></script>
+    
+        <script src="/js/toc.js"></script>
+    
+
+</body>
+</html>

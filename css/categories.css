@@ -1,0 +1,30 @@
+.categories {
+  font-size: 18px;
+  background: #edcfa9;
+  border-radius: 5px;
+  padding: 16px 28px;
+  line-height: 2;
+}
+.categories .no-category {
+  text-align: center;
+}
+.categories .categories-title {
+  margin: 0;
+  text-align: center;
+}
+.categories .category-list {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.categories .category-list .category-item {
+  box-sizing: border-box;
+  min-width: 25%;
+  padding-right: 40px;
+}
+.categories .category-list .category-count {
+  color: #c5856d;
+  font-size: 0.5em;
+  font-weight: bold;
+  margin-left: 0.1em;
+}

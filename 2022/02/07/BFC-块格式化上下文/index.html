@@ -1,0 +1,334 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>BFC-块格式化上下文 - 鼠熊部落格</title>
+    
+        <!-- stylesheets list from _config.yml -->
+        
+            <link rel="stylesheet" href="/css/chippy.css">
+        
+    
+<meta name="generator" content="Hexo 6.2.0"></head>
+<body>
+<nav class="menu-outer">
+    <div class="menu-inner">
+        
+            <a class="menu-inner-item" href="/">
+                <span class="menu-inner-item-icon"></span>
+                <span class="menu-inner-item-text">首页</span>
+            </a>
+        
+            <a class="menu-inner-item" href="/about">
+                <span class="menu-inner-item-icon"></span>
+                <span class="menu-inner-item-text">关于我</span>
+            </a>
+        
+            <a class="menu-inner-item" href="/archives">
+                <span class="menu-inner-item-icon"></span>
+                <span class="menu-inner-item-text">归档</span>
+            </a>
+        
+    </div>
+</nav>
+
+<header class="header-outer">
+    <div class="header-inner">
+        <div class="header-info">
+            
+                <h1 class="header-info-title">
+                    Chipmunk &amp; Panda
+                </h1>
+            
+            
+                <h3 class="header-info-subtitle">
+                    -- 鼠熊部落格
+                </h3>
+            
+            
+                <p class="header-info-motto">
+                    All work and no play makes Jack a dull boy.
+                </p>
+            
+            <div class="header-info-contact">
+                <a target="_blank" rel="noopener" href="https://github.com/SummerDiver" class="header-info-contact-icon">
+                    <i class="icon-github"></i>
+                </a>
+                <a target="_blank" rel="noopener" href="https://weibo.com/u/7390819624" class="header-info-contact-icon">
+                    <i class="icon-sina-weibo"></i>
+                </a>
+                <a href="mailto:summerdiver@yeah.net" class="header-info-contact-icon">
+                    <i class="icon-mail4"></i>
+                </a>
+                <a href="" class="header-info-contact-icon" onclick="return false">
+                    <i class="icon-IE"></i>
+                </a>
+            </div>
+        </div>
+        <a href="#content" class="header-arrow">
+            <i class="icon-forward2"></i>
+        </a>
+    </div>
+</header>
+
+<div id="content" class="content-outer clearfix">
+    <aside id="content-aside" class="content-aside">
+        
+
+    <div class="aside-card aside-toc">
+        <h3>文章目录</h3>
+        <div class="toc-content">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-BFC-%EF%BC%9F"><span class="post-toc-number">1.</span> <span class="post-toc-text">什么是 BFC ？</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E8%A7%A6%E5%8F%91-BFC-%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="post-toc-number">2.</span> <span class="post-toc-text">触发 BFC 的方式</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E7%94%A8%E6%B3%95"><span class="post-toc-number">3.</span> <span class="post-toc-text">用法</span></a></li></ol>
+        </div>
+    </div>
+
+
+<div class="aside-card aside-ov">
+    <div class="author">
+        <div class="author-avatar">
+            <img src="/images/avatar.jpg">
+        </div>
+        <h4 class="author-name">Summer Diver</h4>
+        <p class="author-motto">自家慢诩便便腹，开卷方知未读书。</p>
+    </div>
+    <div class="divider-horizontal"></div>
+    <div class="site-state">
+        <a class="site-state-item" href="/archives">
+            <span class="site-state-item-count">12</span>
+            <span class="site-state-item-name">归档</span>
+        </a>
+        <div class="divider-vertical"></div>
+        <a class="site-state-item" href="/categories">
+            <span class="site-state-item-count">3</span>
+            <span class="site-state-item-name">分类</span>
+        </a>
+        <div class="divider-vertical"></div>
+        <a class="site-state-item" href="/tags">
+            <span class="site-state-item-count">9</span>
+            <span class="site-state-item-name">标签</span>
+        </a>
+    </div>
+    <div class="divider-horizontal"></div>
+    <div class="friends">
+        <div>
+            <i class="icon-link"></i>&nbsp;友情链接
+        </div>
+        
+            <div class="no-friends">
+                <span class="icon-tongue"></span><br>
+                <span>朋友都没有，好像一条狗</span>
+            </div>
+        
+        <ul class="friends-list">
+            
+        </ul>
+    </div>
+</div>
+
+    </aside>
+    <main class="content-inner">
+        <article id="post">
+    <div class="post-header">
+    
+        <h1 class="post-title" href="/2022/02/07/BFC-%E5%9D%97%E6%A0%BC%E5%BC%8F%E5%8C%96%E4%B8%8A%E4%B8%8B%E6%96%87/">BFC-块格式化上下文</h1>
+    
+
+    <div class="post-meta">
+        <time class="post-date" datetime="2022-02-07T07:50:18.000Z">
+            <i class="icon-calendar"></i>&nbsp;2022-02-07
+        </time>
+
+        
+            <span class="post-categories">
+                        <i class="icon-folder">&nbsp;</i>
+                        <a class="post-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+                    </span>
+        
+
+        
+            <span class="post-tags">
+                        <i class="icon-price-tags">&nbsp;</i>
+                        <a class="post-tag-link" href="/tags/CSS/" rel="tag">#CSS</a>
+                    </span>
+        
+    </div>
+</div>
+
+    
+
+    <p>MDN：<strong>块格式化上下文（Block Formatting Context，BFC）</strong> 是 Web 页面的可视 CSS 渲染的一部分，是块盒子的布局过程发生的区域，也是浮动元素与其他元素交互的区域。</p>
+<p>主要跟元素定位以及元素之间的关系有关。</p>
+<span id="more"></span>
+
+<h1 id="什么是-BFC-？"><a href="#什么是-BFC-？" class="headerlink" title="什么是 BFC ？"></a>什么是 BFC ？</h1><p>BFC 是一个独立渲染区域，通俗一点来说，可以把 BFC 看作房间，房间内的人与房间外的人互不影响（当然现实中不是这样啦，过于为所欲为可能会被邻居投诉的）。</p>
+<p>BFC 有以下特性（布局规则）：</p>
+<ul>
+<li><p>内部元素按垂直方向从上到下依次排列。</p>
+<div class="parent" style="display: flow-root; background: gray;">
+    <div class="child" style="background: skyblue;">
+        1
+    </div>
+    <div class="child" style="background: skyblue;">
+        2
+    </div>
+    <div class="child" style="background: skyblue;">
+        3
+    </div>
+</div>
+</li>
+<li><p>同一 BFC 内的相邻元素之间会发生 margin 重叠。</p>
+<div class="parent" style="display: flow-root; background: gray;">
+    <div class="child" style="background: skyblue; margin-bottom: 10px;">
+        下边距为 10px
+    </div>
+    <div class="child" style="background: skyblue; margin-top: 20px;">
+        上边距为 20px，叠过了上方元素的下边距
+    </div>
+</div>
+</li>
+<li><p>BFC 内的浮动元素可以撑开盒子（可以用来清除浮动）。</p>
+<div class="parent" style="display: flow-root; background: gray;">
+    <div class="child" style="background: skyblue; float: left;">
+        浮动子元素
+    </div>
+</div>
+</li>
+<li><p>BFC 之间不会重叠（这条特性重点在于 float 元素属于 BFC，故 BFC 不会与 float 元素发生重叠）。</p>
+<div class="child" style="background: gray; float: left; height: 10px; width: 10px;">
+</div>
+<div class="child" style="background: skyblue; display: flow-root;">
+    泾渭分明
+</div></li>
+</ul>
+<h1 id="触发-BFC-的方式"><a href="#触发-BFC-的方式" class="headerlink" title="触发 BFC 的方式"></a>触发 BFC 的方式</h1><ul>
+<li>根元素 <code>&lt;html&gt;</code></li>
+<li><code>float</code> 属性取值非 <code>none</code></li>
+<li><code>position</code> 属性取值为 <code>absolute</code> 或 <code>fixed</code></li>
+<li><code>display</code> 属性取值为 <code>inline-block</code>、<code>flex</code>（以及 <code>inline-flex</code>）、<code>grid</code>（以及 <code>inline-grid</code>）、<code>flow-root</code> 以及一大堆跟表格有关的值（可见<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Block_formatting_context">块格式化上下文</a>）</li>
+<li><code>overflow</code> 属性取值不为 <code>visible</code></li>
+<li>……（不常用）</li>
+</ul>
+<h1 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h1><ul>
+<li><p>防止元素被浮动元素覆盖</p>
+<div class="child" style="background: gray; float: left; height: 10px; width: 10px;">
+</div>
+<div class="child" style="background: skyblue;">
+    浮动元素盖在上面
+</div>
+
+<hr>
+<div class="child" style="background: gray; float: left; height: 10px; width: 10px;">
+</div>
+<div class="child" style="background: skyblue; display: flow-root;">
+    与浮动元素划清界限
+</div>
+</li>
+<li><p>清除浮动</p>
+<div style="display: flow-root">
+  <div class="parent" style="background: gray;">
+    <div class="child" style="background: skyblue; float: left;">
+        父元素高度为 0 看不见
+    </div>
+  </div>
+</div>
+
+<hr>
+<div class="parent" style="background: gray; display: flow-root;">
+    <div class="child" style="background: skyblue; float: left;">
+        父元素高度被子元素撑开了
+    </div>
+</div>
+</li>
+<li><p>防止垂直方向 margin 重叠</p>
+<ul>
+<li><p>父子元素</p>
+<div class="parent" style="background: gray;">
+    <div class="child" style="background: skyblue; margin-top: 20px">
+        子元素的上边距被父元素吞掉了
+    </div>
+</div>
+
+<hr>
+<div class="parent" style="background: gray; display: flow-root;">
+    <div class="child" style="background: skyblue; margin-top: 20px">
+        父元素变为 BFC 后就不会吞掉子元素的边距了
+    </div>
+</div>
+</li>
+<li><p>兄弟元素</p>
+<div class="parent" style="background: gray;">
+    <div class="child" style="background: skyblue; margin-bottom: 10px;">
+        下边距为 10px
+    </div>
+    <div class="child" style="background: skyblue; margin-top: 20px;">
+        上边距为 20px，叠过了上方元素的下边距
+    </div>
+</div>
+
+<hr>
+<div class="parent" style="background: gray;">
+    <div class="bfc" style="display: flow-root;">
+        <div class="child" style="background: skyblue; margin-bottom: 10px;">
+            下边距为 10px，外套一个 BFC，与下方元素隔开，边距不再重叠
+        </div>
+    </div>
+    <div class="child" style="background: skyblue; margin-top: 20px;">
+        上边距为 20px
+    </div>
+</div></li>
+</ul>
+</li>
+</ul>
+
+    
+        
+        
+        <div class="post-nav">
+            <div class="post-nav-item">
+                
+                    <a href="/2022/02/08/%E7%94%A8%E4%B8%A4%E4%B8%AA%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97/" rel="prev" title="用两个栈实现队列">
+                        <i class="icon-arrow_back_ios"></i>&nbsp;用两个栈实现队列
+                    </a>
+                
+            </div>
+            <div class="post-nav-item">
+                
+                    <a href="/2021/12/14/%E9%A1%B5%E9%9D%A2%E5%AF%BC%E5%85%A5%E6%A0%B7%E5%BC%8F%E6%97%B6%EF%BC%8C%E4%BD%BF%E7%94%A8link%E5%92%8C-import%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F/" rel="next" title="页面导入样式时，使用link和@import有什么区别？">
+                        页面导入样式时，使用link和@import有什么区别？&nbsp;<i class="icon-arrow_forward_ios"></i>
+                    </a>
+                
+            </div>
+        </div>
+    
+</article>
+
+    </main>
+</div>
+
+<footer class="footer-outer">
+    <div class="footer-inner">
+        <div class="copyright">
+            Copyright © 2021~2022 <a target="_blank" rel="noopener" href="https://github.com/SummerDiver"><i
+                        class="icon-pacmanr"></i>Summer Diver<i class="icon-pacmanl"></i></a> <br>
+            Powered by <a target="_blank" rel="noopener" href="http://hexo.io">Hexo<i class="icon-new-tab"></i></a>
+            <br>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- scripts list from theme config.yml -->
+    
+        <script src="/js/jquery-3.6.0.min.js"></script>
+    
+        <script src="/js/chippy.js"></script>
+    
+        <script src="/js/menubar.js"></script>
+    
+        <script src="/js/toc.js"></script>
+    
+
+</body>
+</html>

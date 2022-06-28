@@ -1,0 +1,32 @@
+.recent-post-item + .recent-post-item {
+  margin-top: 15px;
+}
+.recent-post-item {
+  background: #edcfa9;
+  border-radius: 5px;
+  padding: 16px 28px;
+}
+.article-entry a {
+  border-bottom: 1px solid;
+  line-height: 1.5;
+  overflow-wrap: break-word;
+}
+.post-more {
+  margin-top: 20px;
+  text-align: center;
+}
+.post-more-link {
+  display: inline-block;
+  color: #edcfa9;
+  background: #ae8567;
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+.post-more-link:hover {
+  background: #9a6c51;
+  opacity: 1;
+}
+.icon-double_arrow {
+  position: relative;
+  bottom: -1px;
+}

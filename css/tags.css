@@ -1,0 +1,43 @@
+.tags {
+  font-size: 18px;
+  background: #edcfa9;
+  border-radius: 5px;
+  padding: 16px 28px;
+  line-height: 2;
+}
+.tags .no-tag {
+  text-align: center;
+}
+.tags .tags-title {
+  margin: 0;
+  text-align: center;
+}
+.tags .tag-list {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.tags .tag-list .tag-item {
+  box-sizing: border-box;
+  min-width: 25%;
+  padding-right: 40px;
+}
+.tags .tag-list .tag-count {
+  color: #c5856d;
+  font-size: 0.5em;
+  font-weight: bold;
+  margin-left: 0.1em;
+}
+.tag-cloud {
+  border: 1px dashed #c19c78;
+  border-radius: 3px;
+  margin-top: 10px;
+  text-align: center;
+}
+.tag-cloud a {
+  margin: 0 5px;
+}
+.tag-cloud a:hover {
+  color: #865439 !important;
+  opacity: 1;
+}

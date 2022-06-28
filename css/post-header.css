@@ -1,0 +1,30 @@
+.post-title {
+  position: relative;
+  display: block;
+  width: fit-content;
+  color: #333;
+  font-size: 28px;
+  font-weight: bold;
+  margin: 0 auto 8px;
+  text-align: center;
+}
+.post-meta {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  font-size: 12px;
+  margin-bottom: 15px;
+}
+.post-meta a {
+  color: #865439;
+}
+.post-categories,
+.post-tags {
+  margin: 0 1em;
+}
+.icon-folder,
+.icon-price-tags {
+  position: relative;
+  right: -6px;
+  bottom: -1px;
+}

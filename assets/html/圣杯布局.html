@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>圣杯布局</title>
+
+    <style>
+        body {
+            margin: 0;
+        }
+        header, footer {
+            background-color: yellowgreen;
+        }
+        .center {
+            background-color: gainsboro;
+        }
+        .left, .right {
+            background-color: lightcoral;
+        }
+
+        main {
+            display: flow-root;  /* BFC 清除浮动 */
+        }
+        .center, .left, .right {
+            float: left;
+        }
+
+        .center {
+            width: 100%;  /* 充满容器使得宽度能够自适应，但同时会把边栏挤下去 */
+        }
+        .left {
+            width: 40px;
+            margin-left: -100%;  /* 移至与 center 左端对齐，此处 100% 相对父元素宽度而言 */
+        }
+        .right {
+            width: 60px;
+            margin-left: -60px;  /* 移至与 center 右端对齐 */
+        }
+
+        main {
+            padding: 0 60px 0 40px;  /* 使边栏不会把 center 盖住 */
+        }
+        .left {
+            position: relative;
+            left: -40px;  /* 往左移回去 */
+        }
+        .right {
+            position: relative;
+            right: -60px;  /* 往右移回去 */
+        }
+    </style>
+</head>
+
+<body>
+    <header>header</header>
+    <main>
+        <div class="center">center</div>
+        <div class="left">left</div>
+        <div class="right">right</div>
+    </main>
+    <footer>footer</footer>
+</body>
+
+</html>

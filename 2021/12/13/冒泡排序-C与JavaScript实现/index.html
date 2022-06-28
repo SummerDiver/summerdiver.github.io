@@ -1,0 +1,232 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>冒泡排序 - C与JavaScript实现 - 鼠熊部落格</title>
+    
+        <!-- stylesheets list from _config.yml -->
+        
+            <link rel="stylesheet" href="/css/chippy.css">
+        
+    
+<meta name="generator" content="Hexo 6.2.0"></head>
+<body>
+<nav class="menu-outer">
+    <div class="menu-inner">
+        
+            <a class="menu-inner-item" href="/">
+                <span class="menu-inner-item-icon"></span>
+                <span class="menu-inner-item-text">首页</span>
+            </a>
+        
+            <a class="menu-inner-item" href="/about">
+                <span class="menu-inner-item-icon"></span>
+                <span class="menu-inner-item-text">关于我</span>
+            </a>
+        
+            <a class="menu-inner-item" href="/archives">
+                <span class="menu-inner-item-icon"></span>
+                <span class="menu-inner-item-text">归档</span>
+            </a>
+        
+    </div>
+</nav>
+
+<header class="header-outer">
+    <div class="header-inner">
+        <div class="header-info">
+            
+                <h1 class="header-info-title">
+                    Chipmunk &amp; Panda
+                </h1>
+            
+            
+                <h3 class="header-info-subtitle">
+                    -- 鼠熊部落格
+                </h3>
+            
+            
+                <p class="header-info-motto">
+                    All work and no play makes Jack a dull boy.
+                </p>
+            
+            <div class="header-info-contact">
+                <a target="_blank" rel="noopener" href="https://github.com/SummerDiver" class="header-info-contact-icon">
+                    <i class="icon-github"></i>
+                </a>
+                <a target="_blank" rel="noopener" href="https://weibo.com/u/7390819624" class="header-info-contact-icon">
+                    <i class="icon-sina-weibo"></i>
+                </a>
+                <a href="mailto:summerdiver@yeah.net" class="header-info-contact-icon">
+                    <i class="icon-mail4"></i>
+                </a>
+                <a href="" class="header-info-contact-icon" onclick="return false">
+                    <i class="icon-IE"></i>
+                </a>
+            </div>
+        </div>
+        <a href="#content" class="header-arrow">
+            <i class="icon-forward2"></i>
+        </a>
+    </div>
+</header>
+
+<div id="content" class="content-outer clearfix">
+    <aside id="content-aside" class="content-aside">
+        
+
+    <div class="aside-card aside-toc">
+        <h3>文章目录</h3>
+        <div class="toc-content">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E7%AE%97%E6%B3%95%E6%80%9D%E8%B7%AF"><span class="post-toc-number">1.</span> <span class="post-toc-text">算法思路</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="post-toc-number">2.</span> <span class="post-toc-text">代码实现</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#C"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">C</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#JavaScript"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">JavaScript</span></a></li></ol></li></ol>
+        </div>
+    </div>
+
+
+<div class="aside-card aside-ov">
+    <div class="author">
+        <div class="author-avatar">
+            <img src="/images/avatar.jpg">
+        </div>
+        <h4 class="author-name">Summer Diver</h4>
+        <p class="author-motto">自家慢诩便便腹，开卷方知未读书。</p>
+    </div>
+    <div class="divider-horizontal"></div>
+    <div class="site-state">
+        <a class="site-state-item" href="/archives">
+            <span class="site-state-item-count">12</span>
+            <span class="site-state-item-name">归档</span>
+        </a>
+        <div class="divider-vertical"></div>
+        <a class="site-state-item" href="/categories">
+            <span class="site-state-item-count">3</span>
+            <span class="site-state-item-name">分类</span>
+        </a>
+        <div class="divider-vertical"></div>
+        <a class="site-state-item" href="/tags">
+            <span class="site-state-item-count">9</span>
+            <span class="site-state-item-name">标签</span>
+        </a>
+    </div>
+    <div class="divider-horizontal"></div>
+    <div class="friends">
+        <div>
+            <i class="icon-link"></i>&nbsp;友情链接
+        </div>
+        
+            <div class="no-friends">
+                <span class="icon-tongue"></span><br>
+                <span>朋友都没有，好像一条狗</span>
+            </div>
+        
+        <ul class="friends-list">
+            
+        </ul>
+    </div>
+</div>
+
+    </aside>
+    <main class="content-inner">
+        <article id="post">
+    <div class="post-header">
+    
+        <h1 class="post-title" href="/2021/12/13/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F-C%E4%B8%8EJavaScript%E5%AE%9E%E7%8E%B0/">冒泡排序 - C与JavaScript实现</h1>
+    
+
+    <div class="post-meta">
+        <time class="post-date" datetime="2021-12-13T06:05:26.000Z">
+            <i class="icon-calendar"></i>&nbsp;2021-12-13
+        </time>
+
+        
+            <span class="post-categories">
+                        <i class="icon-folder">&nbsp;</i>
+                        <a class="post-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
+                    </span>
+        
+
+        
+            <span class="post-tags">
+                        <i class="icon-price-tags">&nbsp;</i>
+                        <a class="post-tag-link" href="/tags/C/" rel="tag">#C</a>&nbsp;<a class="post-tag-link" href="/tags/JavaScript/" rel="tag">#JavaScript</a>
+                    </span>
+        
+    </div>
+</div>
+
+    
+
+    <p>简单的冒泡算法。</p>
+<span id="more"></span>
+
+<h1 id="算法思路"><a href="#算法思路" class="headerlink" title="算法思路"></a>算法思路</h1><p>冒泡排序的核心思想是对大小为 n 的数组进行 n 轮排序，第一轮从里面揪出来最大的“泡泡”，冒到最顶上，第二轮揪出来第二大的“泡泡”，冒到除了“大泡”以外的最顶上……以此类推。</p>
+<p>至于过程中如何让泡泡冒上去，则是通过交换实现，为了便于说明，把泡泡们从前到后进行编号，即1号泡泡、2号泡泡、3号泡泡……每个泡泡对应一个坑位，也编号为1号坑位、2号坑位、3号坑位……简单说来，初始时，1号泡泡待在1号坑位，2号泡泡待在2号坑，3号泡泡待在3号坑……</p>
+<p>然后，每轮中发生的排序过程如下：</p>
+<ol>
+<li>比较1号坑和2号坑中的泡泡，如果前者大于后者，则交换两个坑中的泡泡，即让前者冒上去。</li>
+<li>继续比较2号坑和3号坑中的泡泡，要注意，经过前一次比较，<strong>2号坑中不一定还是2号泡泡了，而是1号泡泡和2号泡泡中较大的那个泡泡</strong>。</li>
+<li>然后是3号坑和4号坑中的泡泡，此时，<strong>3号坑中是1、2、3号泡泡中最大的那个泡泡</strong>。</li>
+<li>以此类推，一直比较到第 n-1 号坑和第 n 号坑，最后，第n号坑中放的就是所有泡泡中最大的那个泡泡啦。</li>
+</ol>
+<p>经过上面一轮的比较后，到第2轮时，由于已经可以确定第n号坑中是最大的泡泡，所以最后一次比较，也就是第 n-1 号坑和第 n 号坑的比较，是必然不会发生交换的。因此，<strong>第二轮的实际效果就是把第二大的泡泡冒到了n-1号坑</strong>。</p>
+<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><h2 id="C"><a href="#C" class="headerlink" title="C"></a>C</h2><p>首先讲一下 main 函数，它负责随机生成一个数组，然后调用排序函数对数组进行排序，再然后下面没了。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span><br>&#123;<br>    <span class="hljs-type">int</span> nums[SIZE];<br>    generateNums(nums, SIZE); <span class="hljs-comment">// 生成 SIZE 大小的数组，放在 nums 中</span><br><br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;origin:\n&quot;</span>);<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; SIZE; i++)<br>    &#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d &quot;</span>, nums[i]);<br>    &#125;<br><br>    bubbleSort(nums, SIZE);<br><br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\nsorted:\n&quot;</span>);<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; SIZE; i++)<br>    &#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d &quot;</span>, nums[i]);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>接下来就是排序函数 bubbleSort，该讲的都在注释里了，应该不需要再多解释了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">void bubbleSort(int *arr, int size)<br>&#123;<br>    int flag;                      //记录本轮是否发生过交换<br>    for (int i = 0; i &lt; size; i++) //第一轮得到最大值，第二轮得到第二大值，以此类推<br>    &#123;<br>        flag = 0; // 初始为未发生交换<br>        for (int j = 0; j &lt; size; j++)<br>        &#123;<br>            if (arr[j] &gt; arr[j + 1])<br>            &#123;<br>                swap(arr + j, arr + j + 1); // 交换<br><br>                if (!flag) // 修改flag<br>                &#123;<br>                    flag = 1;<br>                &#125;<br>            &#125;<br>        &#125;<br>        if (!flag)<br>        &#123;<br>            break;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这里就需要讲一下代码中未曾在算法思路里提到过的 flag 了，很显然，如果一轮比较下来，一次交换都没有发生，说明没两个相邻泡泡之间的大小关系都是正确的，也就是排序已经完成了，此时当然也就没必要再继续一轮轮跑下去了，所以此时直接终止排序就可以了。</p>
+<p>此外，代码中的 swap 函数用来交换两个泡泡，怎么做的就不必说了吧。</p>
+<p>此此外，代码其实还有继续优化的余地，比如每一轮都是从头比较到尾，而实际上对于那些在前面轮次冒到顶的泡泡，已经不需要再比较了，所以上面的代码存在许多多余的比较。</p>
+<h2 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h2><p>js 写起来仿佛就要方便得多，这里直接放代码了，思路跟用 C 没什么不同，只是实现差异而已。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-variable constant_">SIZE</span> = <span class="hljs-number">20</span>;<br><span class="hljs-keyword">const</span> <span class="hljs-variable constant_">MIN</span> = <span class="hljs-number">0</span>;<br><span class="hljs-keyword">const</span> <span class="hljs-variable constant_">MAX</span> = <span class="hljs-number">100</span>;<br><br><span class="hljs-keyword">let</span> <span class="hljs-title function_">bubbleSort</span> = (<span class="hljs-params">arr</span>) =&gt; &#123;<br>    <span class="hljs-keyword">let</span> flag;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; arr.<span class="hljs-property">length</span>; i++) &#123;<br>        flag = <span class="hljs-literal">false</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> j = <span class="hljs-number">0</span>; j &lt; arr.<span class="hljs-property">length</span>; j++) &#123;<br>            <span class="hljs-keyword">if</span> (arr[j] &gt; arr[j + <span class="hljs-number">1</span>]) &#123;<br>                arr[j] += arr[j + <span class="hljs-number">1</span>];<br>                arr[j + <span class="hljs-number">1</span>] = arr[j] - arr[j + <span class="hljs-number">1</span>];<br>                arr[j] -= arr[j + <span class="hljs-number">1</span>];<br><br>                <span class="hljs-keyword">if</span> (!flag) &#123;<br>                    flag = <span class="hljs-literal">true</span>;<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">if</span> (flag = <span class="hljs-literal">false</span>) &#123;<br>            <span class="hljs-keyword">break</span>;<br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">let</span> arr = [];<br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-variable constant_">SIZE</span>; i++) &#123;<br>    arr.<span class="hljs-title function_">push</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">round</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>() * (<span class="hljs-variable constant_">MAX</span> - <span class="hljs-variable constant_">MIN</span> + <span class="hljs-number">1</span>) + <span class="hljs-variable constant_">MIN</span>));<br>&#125;<br><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;before:\n&quot;</span>, arr);<br><br><span class="hljs-title function_">bubbleSort</span>(arr);<br><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;sorted:\n&quot;</span>, arr);<br></code></pre></td></tr></table></figure>
+
+
+    
+        
+        
+        <div class="post-nav">
+            <div class="post-nav-item">
+                
+                    <a href="/2021/12/14/%E9%A1%B5%E9%9D%A2%E5%AF%BC%E5%85%A5%E6%A0%B7%E5%BC%8F%E6%97%B6%EF%BC%8C%E4%BD%BF%E7%94%A8link%E5%92%8C-import%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F/" rel="prev" title="页面导入样式时，使用link和@import有什么区别？">
+                        <i class="icon-arrow_back_ios"></i>&nbsp;页面导入样式时，使用link和@import有什么区别？
+                    </a>
+                
+            </div>
+            <div class="post-nav-item">
+                
+            </div>
+        </div>
+    
+</article>
+
+    </main>
+</div>
+
+<footer class="footer-outer">
+    <div class="footer-inner">
+        <div class="copyright">
+            Copyright © 2021~2022 <a target="_blank" rel="noopener" href="https://github.com/SummerDiver"><i
+                        class="icon-pacmanr"></i>Summer Diver<i class="icon-pacmanl"></i></a> <br>
+            Powered by <a target="_blank" rel="noopener" href="http://hexo.io">Hexo<i class="icon-new-tab"></i></a>
+            <br>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- scripts list from theme config.yml -->
+    
+        <script src="/js/jquery-3.6.0.min.js"></script>
+    
+        <script src="/js/chippy.js"></script>
+    
+        <script src="/js/menubar.js"></script>
+    
+        <script src="/js/toc.js"></script>
+    
+
+</body>
+</html>
