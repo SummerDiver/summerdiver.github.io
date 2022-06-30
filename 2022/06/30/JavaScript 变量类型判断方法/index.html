@@ -1,0 +1,248 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript 变量类型判断方法 - 鼠熊部落格</title>
+    
+        <!-- stylesheets list from _config.yml -->
+        
+            <link rel="stylesheet" href="/css/chippy.css">
+        
+    
+<meta name="generator" content="Hexo 6.2.0"></head>
+<body>
+<nav class="menu-outer">
+    <div class="menu-inner">
+        
+            <a class="menu-inner-item" href="/">
+                <span class="menu-inner-item-icon"></span>
+                <span class="menu-inner-item-text">首页</span>
+            </a>
+        
+            <a class="menu-inner-item" href="/about">
+                <span class="menu-inner-item-icon"></span>
+                <span class="menu-inner-item-text">关于我</span>
+            </a>
+        
+            <a class="menu-inner-item" href="/archives">
+                <span class="menu-inner-item-icon"></span>
+                <span class="menu-inner-item-text">归档</span>
+            </a>
+        
+    </div>
+</nav>
+
+<header class="header-outer">
+    <div class="header-inner">
+        <div class="header-info">
+            
+                <h1 class="header-info-title">
+                    Chipmunk &amp; Panda
+                </h1>
+            
+            
+                <h3 class="header-info-subtitle">
+                    -- 鼠熊部落格
+                </h3>
+            
+            
+                <p class="header-info-motto">
+                    All work and no play makes Jack a dull boy.
+                </p>
+            
+            <div class="header-info-contact">
+                <a target="_blank" rel="noopener" href="https://github.com/SummerDiver" class="header-info-contact-icon">
+                    <i class="icon-github"></i>
+                </a>
+                <a target="_blank" rel="noopener" href="https://weibo.com/u/7390819624" class="header-info-contact-icon">
+                    <i class="icon-sina-weibo"></i>
+                </a>
+                <a href="mailto:summerdiver@yeah.net" class="header-info-contact-icon">
+                    <i class="icon-mail4"></i>
+                </a>
+                <a href="" class="header-info-contact-icon" onclick="return false">
+                    <i class="icon-IE"></i>
+                </a>
+            </div>
+        </div>
+        <a href="#content" class="header-arrow">
+            <i class="icon-forward2"></i>
+        </a>
+    </div>
+</header>
+
+<div id="content" class="content-outer clearfix">
+    <aside id="content-aside" class="content-aside">
+        
+
+    <div class="aside-card aside-toc">
+        <h3>文章目录</h3>
+        <div class="toc-content">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E5%8F%98%E9%87%8F%E5%AE%9A%E4%B9%89"><span class="post-toc-number">1.</span> <span class="post-toc-text">变量定义</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#typeof"><span class="post-toc-number">2.</span> <span class="post-toc-text">typeof</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#instanceof"><span class="post-toc-number">3.</span> <span class="post-toc-text">instanceof</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#constructor-NaN"><span class="post-toc-number">4.</span> <span class="post-toc-text">constructor</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#toString-NaN"><span class="post-toc-number">5.</span> <span class="post-toc-text">toString</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E6%80%BB%E7%BB%93"><span class="post-toc-number">6.</span> <span class="post-toc-text">总结</span></a></li></ol>
+        </div>
+    </div>
+
+
+<div class="aside-card aside-ov">
+    <div class="author">
+        <div class="author-avatar">
+            <img src="/images/avatar.jpg">
+        </div>
+        <h4 class="author-name">Summer Diver</h4>
+        <p class="author-motto">自家慢诩便便腹，开卷方知未读书。</p>
+    </div>
+    <div class="divider-horizontal"></div>
+    <div class="site-state">
+        <a class="site-state-item" href="/archives">
+            <span class="site-state-item-count">13</span>
+            <span class="site-state-item-name">归档</span>
+        </a>
+        <div class="divider-vertical"></div>
+        <a class="site-state-item" href="/categories">
+            <span class="site-state-item-count">3</span>
+            <span class="site-state-item-name">分类</span>
+        </a>
+        <div class="divider-vertical"></div>
+        <a class="site-state-item" href="/tags">
+            <span class="site-state-item-count">9</span>
+            <span class="site-state-item-name">标签</span>
+        </a>
+    </div>
+    <div class="divider-horizontal"></div>
+    <div class="friends">
+        <div>
+            <i class="icon-link"></i>&nbsp;友情链接
+        </div>
+        
+            <div class="no-friends">
+                <span class="icon-tongue"></span><br>
+                <span>朋友都没有，好像一条狗</span>
+            </div>
+        
+        <ul class="friends-list">
+            
+        </ul>
+    </div>
+</div>
+
+    </aside>
+    <main class="content-inner">
+        <article id="post">
+    <div class="post-header">
+    
+        <h1 class="post-title" href="/2022/06/30/JavaScript%20%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B%E5%88%A4%E6%96%AD%E6%96%B9%E6%B3%95/">JavaScript 变量类型判断方法</h1>
+    
+
+    <div class="post-meta">
+        <time class="post-date" datetime="2022-06-30T15:36:06.000Z">
+            <i class="icon-calendar"></i>&nbsp;2022-06-30
+        </time>
+
+        
+            <span class="post-categories">
+                        <i class="icon-folder">&nbsp;</i>
+                        <a class="post-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+                    </span>
+        
+
+        
+            <span class="post-tags">
+                        <i class="icon-price-tags">&nbsp;</i>
+                        <a class="post-tag-link" href="/tags/JavaScript/" rel="tag">#JavaScript</a>
+                    </span>
+        
+    </div>
+</div>
+
+    
+
+    <p>常用方法包括 <code>typeof</code>、<code>instanceof</code>、<code>constructor</code> 和 <code>toString</code>。</p>
+<span id="more"></span>
+
+<h1 id="变量定义"><a href="#变量定义" class="headerlink" title="变量定义"></a>变量定义</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> undefinedV;<br><span class="hljs-keyword">let</span> boolV = <span class="hljs-literal">true</span>;<br><span class="hljs-keyword">let</span> numV = <span class="hljs-number">9527</span>;<br><span class="hljs-keyword">let</span> strV = <span class="hljs-string">&#x27;9527&#x27;</span>;<br><span class="hljs-keyword">let</span> symbolV = <span class="hljs-title class_">Symbol</span>(<span class="hljs-string">&#x27;9527&#x27;</span>);<br><span class="hljs-keyword">let</span> nullV = <span class="hljs-literal">null</span>;<br><span class="hljs-keyword">let</span> arrV = [<span class="hljs-number">9</span>, <span class="hljs-number">5</span>, <span class="hljs-number">2</span>, <span class="hljs-number">7</span>];<br><span class="hljs-keyword">let</span> objV = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Object</span>();<br><span class="hljs-keyword">let</span> funcV = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123; &#125;;<br></code></pre></td></tr></table></figure>
+
+<h1 id="typeof"><a href="#typeof" class="headerlink" title="typeof"></a>typeof</h1><p><code>typeof</code> 用于确定值的<strong>原始类型</strong>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> undefinedV);  <span class="hljs-comment">// undefined</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> boolV);  <span class="hljs-comment">// boolean</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> numV);  <span class="hljs-comment">// number</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> strV);  <span class="hljs-comment">// string</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> symbolV);  <span class="hljs-comment">// symbol</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> nullV);  <span class="hljs-comment">// object</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> arrV);  <span class="hljs-comment">// object</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> objV);  <span class="hljs-comment">// object</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> funcV);  <span class="hljs-comment">// function</span><br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Parent</span> &#123; &#125;;<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Child</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">Parent</span> &#123; &#125;;<br><span class="hljs-keyword">let</span> child = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Child</span>();<br></code></pre></td></tr></table></figure>
+
+<p><code>typeof</code> 对原始类型变量以及 <code>function</code> 都能够正常判断，但是对于引用类型一律视作 <code>Object</code>，因此不能用来判断引用类型。</p>
+<blockquote>
+<p>值得注意的是，<code>typeof</code> 对于 <code>null</code> 类型变量也会输出 <code>&#39;object&#39;</code>，这是因为 JavaScript 最初使用低位存储变量类型信息，<code>Object</code> 类型变量的机器码标识低 3 位为 0，<code>null</code> 类型变量的机器码标识为全 0。<code>typeof</code> 进行类型判断时，直接根据机器码低位标识进行判断，导致二者识别结果重复（均为’000’），故使得 <code>typeof null</code> 输出为 <code>&#39;object&#39;</code>。</p>
+<p>因为这个 bug 遗留太久了，因此后续也就没再修复，以免影响太大。</p>
+</blockquote>
+<h1 id="instanceof"><a href="#instanceof" class="headerlink" title="instanceof"></a>instanceof</h1><p><code>instanceof</code> 用于确定对象（引用值）的具体类型。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(arrV <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">Array</span>);  <span class="hljs-comment">// true</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(objV <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">Object</span>);  <span class="hljs-comment">// true</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(funcV <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">Function</span>);  <span class="hljs-comment">// true</span><br><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(child <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">Child</span>);  <span class="hljs-comment">// true</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(child <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">Parent</span>);  <span class="hljs-comment">// true</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><code>instanceof</code> 对变量原型链上所有对象都会返回 <code>true</code>。</li>
+<li><code>instanceof</code> 不能用于 <code>null</code> 和 <code>undefined</code>，会报错。</li>
+<li>使用 <code>instanceof</code> 检测任何引用值与 <code>Object</code> 构造函数都会返回 <code>true</code>，例如 <code>arrV instanceof Object === true</code></li>
+<li>使用 <code>instanceof</code> 检测任何原始值都会返回 <code>false</code>，例如 <code>boolV instanceof Object === false</code>。</li>
+</ul>
+<h1 id="constructor-NaN"><a href="#constructor-NaN" class="headerlink" title="constructor"></a>constructor</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(boolV.<span class="hljs-property">constructor</span> === <span class="hljs-title class_">Boolean</span>);  <span class="hljs-comment">// true</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(numV.<span class="hljs-property">constructor</span> === <span class="hljs-title class_">Number</span>);  <span class="hljs-comment">// true</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(strV.<span class="hljs-property">constructor</span> === <span class="hljs-title class_">String</span>);  <span class="hljs-comment">// true</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(symbolV.<span class="hljs-property">constructor</span> === <span class="hljs-title class_">Symbol</span>);  <span class="hljs-comment">// true</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(arrV.<span class="hljs-property">constructor</span> === <span class="hljs-title class_">Array</span>);  <span class="hljs-comment">// true</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(objV.<span class="hljs-property">constructor</span> === <span class="hljs-title class_">Object</span>);  <span class="hljs-comment">// true</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(funcV.<span class="hljs-property">constructor</span> === <span class="hljs-title class_">Function</span>);  <span class="hljs-comment">// true</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><code>undefined</code> 和 <code>null</code> 没有 <code>constructor</code> 属性，因此不能用这个方法判断他俩。</li>
+<li><code>constructor</code> 指向可以被改变，因此这个方法不安全。</li>
+</ul>
+<h1 id="toString-NaN"><a href="#toString-NaN" class="headerlink" title="toString"></a>toString</h1><p>准确来说是 <code>Object.prototype.toString.call(variable)</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Object</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">toString</span>.<span class="hljs-title function_">call</span>(undefinedV)); <span class="hljs-comment">// [object Undefined]</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Object</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">toString</span>.<span class="hljs-title function_">call</span>(boolV)); <span class="hljs-comment">// [object Boolean]</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Object</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">toString</span>.<span class="hljs-title function_">call</span>(numV)); <span class="hljs-comment">// [object Number]</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Object</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">toString</span>.<span class="hljs-title function_">call</span>(strV)); <span class="hljs-comment">// [object String]</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Object</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">toString</span>.<span class="hljs-title function_">call</span>(symbolV)); <span class="hljs-comment">// [object Symbol]</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Object</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">toString</span>.<span class="hljs-title function_">call</span>(nullV)); <span class="hljs-comment">// [object Null]</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Object</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">toString</span>.<span class="hljs-title function_">call</span>(arrV)); <span class="hljs-comment">// [object Array]</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Object</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">toString</span>.<span class="hljs-title function_">call</span>(objV)); <span class="hljs-comment">// [object Object]</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Object</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">toString</span>.<span class="hljs-title function_">call</span>(funcV)); <span class="hljs-comment">// [object Function]</span><br><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Object</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">toString</span>.<span class="hljs-title function_">call</span>(child)); <span class="hljs-comment">// [object Object]</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><code>toString</code> 输出类的 <code>[[Class]]</code> 属性，即构造函数名，但它无法检测非原生构造函数的构造函数名。</li>
+</ul>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ul>
+<li><code>typeof</code> 适合判断原始变量类型，不适合判断引用变量类型和 <code>null</code>。</li>
+<li><code>instanceof</code> 适合判断引用变量的具体类型，不适合判断原始变量类型和 <code>undefined</code>、<code>null</code>。</li>
+<li><code>constructor</code> 能够判断原始变量类型和引用变量类型，但不能用于 <code>undefined</code> 和 <code>null</code>，且不够安全。</li>
+<li><code>toString</code> 能够判断所有原始变量类型和引用变量类型，比较全面，但不能判断非原生引用变量类型。</li>
+<li>判断 <code>undefined</code> 可以用 <code>typeof</code>、<code>toString</code>；判断 <code>null</code> 可以用 <code>toString</code>；判断原生引用变量类型可以用 <code>instanceof</code>、<code>constructor</code> 和 <code>toString</code>；判断非原生引用变量类型可以用 <code>instanceof</code>，但需注意其对于变量原型链上所有对象均会返回 <code>true</code>。</li>
+</ul>
+
+    
+        
+        
+        <div class="post-nav">
+            <div class="post-nav-item">
+                
+            </div>
+            <div class="post-nav-item">
+                
+                    <a href="/2022/06/28/JavaScript%20%E9%81%8D%E5%8E%86%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/" rel="next" title="JavaScript 遍历数组方法总结">
+                        JavaScript 遍历数组方法总结&nbsp;<i class="icon-arrow_forward_ios"></i>
+                    </a>
+                
+            </div>
+        </div>
+    
+</article>
+
+    </main>
+</div>
+
+<footer class="footer-outer">
+    <div class="footer-inner">
+        <div class="copyright">
+            Copyright © 2021~2022 <a target="_blank" rel="noopener" href="https://github.com/SummerDiver"><i
+                        class="icon-pacmanr"></i>Summer Diver<i class="icon-pacmanl"></i></a> <br>
+            Powered by <a target="_blank" rel="noopener" href="http://hexo.io">Hexo<i class="icon-new-tab"></i></a>
+            <br>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- scripts list from theme config.yml -->
+    
+        <script src="/js/jquery-3.6.0.min.js"></script>
+    
+        <script src="/js/chippy.js"></script>
+    
+        <script src="/js/menubar.js"></script>
+    
+        <script src="/js/toc.js"></script>
+    
+
+</body>
+</html>
