@@ -1,0 +1,258 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript 对象继承方法 - 鼠熊部落格</title>
+    
+        <!-- stylesheets list from _config.yml -->
+        
+            <link rel="stylesheet" href="/css/chippy.css">
+        
+    
+<meta name="generator" content="Hexo 6.2.0"></head>
+<body>
+<nav class="menu-outer">
+    <div class="menu-inner">
+        
+            <a class="menu-inner-item" href="/">
+                <span class="menu-inner-item-icon"></span>
+                <span class="menu-inner-item-text">首页</span>
+            </a>
+        
+            <a class="menu-inner-item" href="/about">
+                <span class="menu-inner-item-icon"></span>
+                <span class="menu-inner-item-text">关于我</span>
+            </a>
+        
+            <a class="menu-inner-item" href="/archives">
+                <span class="menu-inner-item-icon"></span>
+                <span class="menu-inner-item-text">归档</span>
+            </a>
+        
+    </div>
+</nav>
+
+<header class="header-outer">
+    <div class="header-inner">
+        <div class="header-info">
+            
+                <h1 class="header-info-title">
+                    Chipmunk &amp; Panda
+                </h1>
+            
+            
+                <h3 class="header-info-subtitle">
+                    -- 鼠熊部落格
+                </h3>
+            
+            
+                <p class="header-info-motto">
+                    All work and no play makes Jack a dull boy.
+                </p>
+            
+            <div class="header-info-contact">
+                <a target="_blank" rel="noopener" href="https://github.com/SummerDiver" class="header-info-contact-icon">
+                    <i class="icon-github"></i>
+                </a>
+                <a target="_blank" rel="noopener" href="https://weibo.com/u/7390819624" class="header-info-contact-icon">
+                    <i class="icon-sina-weibo"></i>
+                </a>
+                <a href="mailto:summerdiver@yeah.net" class="header-info-contact-icon">
+                    <i class="icon-mail4"></i>
+                </a>
+                <a href="" class="header-info-contact-icon" onclick="return false">
+                    <i class="icon-IE"></i>
+                </a>
+            </div>
+        </div>
+        <a href="#content" class="header-arrow">
+            <i class="icon-forward2"></i>
+        </a>
+    </div>
+</header>
+
+<div id="content" class="content-outer clearfix">
+    <aside id="content-aside" class="content-aside">
+        
+
+    <div class="aside-card aside-toc">
+        <h3>文章目录</h3>
+        <div class="toc-content">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E9%A2%84%E5%A4%87%E4%BB%A3%E7%A0%81"><span class="post-toc-number">1.</span> <span class="post-toc-text">预备代码</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E5%8E%9F%E5%9E%8B%E9%93%BE%E7%BB%A7%E6%89%BF"><span class="post-toc-number">2.</span> <span class="post-toc-text">原型链继承</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E7%9B%97%E7%94%A8%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="post-toc-number">3.</span> <span class="post-toc-text">盗用构造函数</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E7%BB%84%E5%90%88%E7%BB%A7%E6%89%BF"><span class="post-toc-number">4.</span> <span class="post-toc-text">组合继承</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E5%AF%84%E7%94%9F%E5%BC%8F%E7%BB%84%E5%90%88%E7%BB%A7%E6%89%BF"><span class="post-toc-number">5.</span> <span class="post-toc-text">寄生式组合继承</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%8E%9F%E5%9E%8B%E5%BC%8F%E7%BB%A7%E6%89%BF"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">原型式继承</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%AF%84%E7%94%9F%E5%BC%8F%E7%BB%A7%E6%89%BF"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">寄生式继承</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%AF%84%E7%94%9F%E5%BC%8F%E7%BB%84%E5%90%88%E7%BB%A7%E6%89%BF-1"><span class="post-toc-number">5.3.</span> <span class="post-toc-text">寄生式组合继承</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E7%B1%BB%E7%BB%A7%E6%89%BF"><span class="post-toc-number">6.</span> <span class="post-toc-text">类继承</span></a></li></ol>
+        </div>
+    </div>
+
+
+<div class="aside-card aside-ov">
+    <div class="author">
+        <div class="author-avatar">
+            <img src="/images/avatar.jpg">
+        </div>
+        <h4 class="author-name">Summer Diver</h4>
+        <p class="author-motto">自家慢诩便便腹，开卷方知未读书。</p>
+    </div>
+    <div class="divider-horizontal"></div>
+    <div class="site-state">
+        <a class="site-state-item" href="/archives">
+            <span class="site-state-item-count">16</span>
+            <span class="site-state-item-name">归档</span>
+        </a>
+        <div class="divider-vertical"></div>
+        <a class="site-state-item" href="/categories">
+            <span class="site-state-item-count">3</span>
+            <span class="site-state-item-name">分类</span>
+        </a>
+        <div class="divider-vertical"></div>
+        <a class="site-state-item" href="/tags">
+            <span class="site-state-item-count">9</span>
+            <span class="site-state-item-name">标签</span>
+        </a>
+    </div>
+    <div class="divider-horizontal"></div>
+    <div class="friends">
+        <div>
+            <i class="icon-link"></i>&nbsp;友情链接
+        </div>
+        
+            <div class="no-friends">
+                <span class="icon-tongue"></span><br>
+                <span>朋友都没有，好像一条狗</span>
+            </div>
+        
+        <ul class="friends-list">
+            
+        </ul>
+    </div>
+</div>
+
+    </aside>
+    <main class="content-inner">
+        <article id="post">
+    <div class="post-header">
+    
+        <h1 class="post-title" href="/2022/07/09/JavaScript%E5%AF%B9%E8%B1%A1%E7%BB%A7%E6%89%BF%E6%96%B9%E6%B3%95/">JavaScript 对象继承方法</h1>
+    
+
+    <div class="post-meta">
+        <time class="post-date" datetime="2022-07-09T13:08:25.000Z">
+            <i class="icon-calendar"></i>&nbsp;2022-07-09
+        </time>
+
+        
+            <span class="post-categories">
+                        <i class="icon-folder">&nbsp;</i>
+                        <a class="post-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+                    </span>
+        
+
+        
+            <span class="post-tags">
+                        <i class="icon-price-tags">&nbsp;</i>
+                        <a class="post-tag-link" href="/tags/JavaScript/" rel="tag">#JavaScript</a>
+                    </span>
+        
+    </div>
+</div>
+
+    
+
+    <p>原型链（存在引用值共享问题）、盗用构造函数（存在函数重用问题）、组合继承（存在父类构造函数重复调用问题）、原型式继承（存在引用值共享问题）、寄生式继承（存在函数重用问题）、寄生组合式继承（最推荐）。</p>
+<p>类继承（ES6 语法糖）真香。</p>
+<span id="more"></span>
+
+<h1 id="预备代码"><a href="#预备代码" class="headerlink" title="预备代码"></a>预备代码</h1><p>定义一个父类，包括一个原始值属性和引用值属性，并在其原型上定义了一个输出函数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">SuperType</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">prop1</span> = <span class="hljs-number">9527</span>;<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">prop2</span> = [<span class="hljs-number">9</span>, <span class="hljs-number">5</span>, <span class="hljs-number">2</span>, <span class="hljs-number">7</span>];<br>&#125;<br><span class="hljs-title class_">SuperType</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">printProp1</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">prop1</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="原型链继承"><a href="#原型链继承" class="headerlink" title="原型链继承"></a>原型链继承</h1><p>原型链继承思想即将父类的实例作为子类的原型，从而使得子类能够继承父类的属性和方法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">SubType1</span>(<span class="hljs-params"></span>) &#123; &#125;;<br><span class="hljs-title class_">SubType1</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">SuperType</span>();<br><span class="hljs-keyword">let</span> instance1 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">SubType1</span>();<br>instance1.<span class="hljs-title function_">printProp1</span>();  <span class="hljs-comment">// 9527</span><br></code></pre></td></tr></table></figure>
+
+<p>原型链的问题在于所有子类实例会共享作为原型的父类实例的引用值属性，即引用值共享问题。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(instance1.<span class="hljs-property">prop2</span>);  <span class="hljs-comment">// [ 9, 5, 2, 7 ]</span><br><span class="hljs-keyword">let</span> instance2 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">SubType1</span>();<br>instance2.<span class="hljs-property">prop2</span>.<span class="hljs-title function_">push</span>(<span class="hljs-number">666</span>);<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(instance1.<span class="hljs-property">prop2</span>);  <span class="hljs-comment">// [ 9, 5, 2, 7, 666 ]</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="盗用构造函数"><a href="#盗用构造函数" class="headerlink" title="盗用构造函数"></a>盗用构造函数</h1><p>盗用构造函数方法用于解决引用值共享问题，其在子类构造函数中调用父类构造函数，使得每个子类实例都会自行创建一个新的引用值属性。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">SubType2</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-title class_">SuperType</span>.<span class="hljs-title function_">call</span>(<span class="hljs-variable language_">this</span>);<br>&#125;<br><span class="hljs-keyword">let</span> instance3 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">SubType2</span>();<br><span class="hljs-keyword">let</span> instance4 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">SubType2</span>();<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(instance4.<span class="hljs-property">prop2</span>);  <span class="hljs-comment">// [ 9, 5, 2, 7 ]</span><br>instance3.<span class="hljs-property">prop2</span>.<span class="hljs-title function_">push</span>(<span class="hljs-number">777</span>);<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(instance3.<span class="hljs-property">prop2</span>);  <span class="hljs-comment">// [ 9, 5, 2, 7, 777 ]</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(instance4.<span class="hljs-property">prop2</span>);  <span class="hljs-comment">// [ 9, 5, 2, 7 ]</span><br></code></pre></td></tr></table></figure>
+
+<p>盗用构造函数方法的问题在于父类函数不能重用，必须在构造函数中定义方法，子类也不能访问父类原型上定义的方法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">instance3.<span class="hljs-title function_">printProp1</span>();  <span class="hljs-comment">// TypeError: instance3.printProp1 is not a function</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="组合继承"><a href="#组合继承" class="headerlink" title="组合继承"></a>组合继承</h1><p>组合继承方法综合了原型链方法和盗用构造函数方法，使用前者继承原型上的属性和方法，使用后者继承实例属性，从而同时解决了引用值共享和函数重用问题。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">SubType3</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-title class_">SuperType</span>.<span class="hljs-title function_">call</span>(<span class="hljs-variable language_">this</span>);<br>&#125;<br><span class="hljs-title class_">SubType3</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">SuperType</span>();<br><span class="hljs-keyword">let</span> instance5 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">SubType3</span>();<br><span class="hljs-keyword">let</span> instance6 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">SubType3</span>();<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(instance6.<span class="hljs-property">prop2</span>);  <span class="hljs-comment">// [ 9, 5, 2, 7 ]</span><br>instance5.<span class="hljs-property">prop2</span>.<span class="hljs-title function_">push</span>(<span class="hljs-number">888</span>);<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(instance5.<span class="hljs-property">prop2</span>);  <span class="hljs-comment">// [ 9, 5, 2, 7, 888 ]</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(instance6.<span class="hljs-property">prop2</span>);  <span class="hljs-comment">// [ 9, 5, 2, 7 ]</span><br>instance5.<span class="hljs-title function_">printProp1</span>();  <span class="hljs-comment">// 9527</span><br></code></pre></td></tr></table></figure>
+
+<p>组合继承方法的问题在于父类构造函数会被调用两次，而实际上只有子类调用父类构造函数时才需要。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">SubType3</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-title class_">SuperType</span>.<span class="hljs-title function_">call</span>(<span class="hljs-variable language_">this</span>);  <span class="hljs-comment">// 第二次</span><br>&#125;<br><span class="hljs-title class_">SubType3</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">SuperType</span>();  <span class="hljs-comment">// 第一次，不需要</span><br><span class="hljs-keyword">let</span> instance5 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">SubType3</span>();<br></code></pre></td></tr></table></figure>
+
+<h1 id="寄生式组合继承"><a href="#寄生式组合继承" class="headerlink" title="寄生式组合继承"></a>寄生式组合继承</h1><p>寄生式组合继承在组合继承的基础上解决了父类构造函数的重复调用问题，在介绍该方法之前需要了解原型式继承与寄生式继承。</p>
+<h2 id="原型式继承"><a href="#原型式继承" class="headerlink" title="原型式继承"></a>原型式继承</h2><p>原型式继承目的在于在不自定义类型的情况下通过原型实现对象之间的信息共享，<code>Object.creat()</code> 将这一概念规范化了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> person = &#123;<br>    <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;person9527&#x27;</span>,<br>    <span class="hljs-attr">number</span>: [<span class="hljs-number">9</span>, <span class="hljs-number">5</span>, <span class="hljs-number">2</span>, <span class="hljs-number">7</span>]<br>&#125;<br><span class="hljs-comment">// 下面等效于let anotherPerson = Object.create(person)</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">Person</span>(<span class="hljs-params"></span>) &#123; &#125;<br><span class="hljs-title class_">Person</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> = person;<br><span class="hljs-keyword">let</span> anotherPerson = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>();<br></code></pre></td></tr></table></figure>
+
+<p>上述代码本质上是对 <code>person</code> 进行了一次浅复制，其问题与原型链继承相同，在于引用值共享问题。实际上，该方法与原型链继承的思想基本一致，区别不过在于原型链继承定义了一个父类并将其的一个实例作为子类的原型，原型式继承则是直接将一个已有对象作为子类的原型。</p>
+<h2 id="寄生式继承"><a href="#寄生式继承" class="headerlink" title="寄生式继承"></a>寄生式继承</h2><p>寄生式继承就是在原型式继承基础上为子类实例添加了新方法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript">anotherPerson.<span class="hljs-property">sayName</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>该方法会导致函数难以重用。</p>
+<h2 id="寄生式组合继承-1"><a href="#寄生式组合继承-1" class="headerlink" title="寄生式组合继承"></a>寄生式组合继承</h2><p>对于之前盗用了构造函数的 <code>SubType3</code>：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">SubType3</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-title class_">SuperType</span>.<span class="hljs-title function_">call</span>(<span class="hljs-variable language_">this</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>为了解决函数重用问题，组合继承操作如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title class_">SubType3</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">SuperType</span>();<br><span class="hljs-keyword">let</span> instance5 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">SubType3</span>();  <span class="hljs-comment">// 在此会重复调用父类构造函数</span><br></code></pre></td></tr></table></figure>
+
+<p>寄生式组合继承基本思路是不通过调用父类构造函数给子类原型赋值，而是取得父类原型的一个副本（<code>Object.creat()</code>），在此需要记得将副本的 <code>constructor</code> 改为子类构造函数，否则会依然是父类构造函数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> prototype = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">create</span>(<span class="hljs-title class_">SuperType</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>);<br>prototype.<span class="hljs-property">constructor</span> = <span class="hljs-title class_">SubType3</span>;<br><span class="hljs-title class_">SubType3</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> = prototype;<br></code></pre></td></tr></table></figure>
+
+<p>上述代码中 <code>prototype</code> 的构造等价于如下操作：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> prototype2 = &#123;&#125;;<br>prototype2.<span class="hljs-property">__proto__</span> = <span class="hljs-title class_">SuperType</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>;<br>prototype2.<span class="hljs-property">constructor</span> = <span class="hljs-title class_">SubType3</span>;<br><span class="hljs-title class_">SubType3</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> = prototype2;<br></code></pre></td></tr></table></figure>
+
+<p>这里只调用了一次 <code>SuperType</code> 构造函数，避免了 <code>SubType.prototype</code> 上不必要也用不到的属性，因此可以说这个例子的效率更高。而且，原型链仍然保持不变，因此 <code>instanceof</code> 操作符和 <code>isPrototypeOf()</code> 方法正常有效。寄生式组合继承可以算是引用类型继承的最佳模式。（引自《JavaScript 高级程序设计》）</p>
+<h1 id="类继承"><a href="#类继承" class="headerlink" title="类继承"></a>类继承</h1><p>ES6 新引入了 <strong>类（class）</strong> 的概念，直接对继承问题进行了最佳实现。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">class</span> <span class="hljs-title class_">SuperType</span> &#123;<br>    <span class="hljs-title function_">constructor</span>(<span class="hljs-params"></span>) &#123;<br>        <span class="hljs-variable language_">this</span>.<span class="hljs-property">prop1</span> = <span class="hljs-number">9527</span>;<br>        <span class="hljs-variable language_">this</span>.<span class="hljs-property">prop2</span> = [<span class="hljs-number">9</span>, <span class="hljs-number">5</span>, <span class="hljs-number">2</span>, <span class="hljs-number">7</span>];<br><br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;SuperType constructor.&quot;</span>)<br>    &#125;<br><br>    <span class="hljs-title function_">printProp1</span>(<span class="hljs-params"></span>) &#123;<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">prop1</span>);<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">SubType</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">SuperType</span> &#123; &#125;<br><br><span class="hljs-keyword">let</span> instanceA = <span class="hljs-keyword">new</span> <span class="hljs-title class_">SubType</span>();  <span class="hljs-comment">// SuperType constructor.</span><br><span class="hljs-keyword">let</span> instanceB = <span class="hljs-keyword">new</span> <span class="hljs-title class_">SubType</span>();  <span class="hljs-comment">// SuperType constructor.</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(instanceB.<span class="hljs-property">prop2</span>);  <span class="hljs-comment">// [ 9, 5, 2, 7 ]</span><br>instanceA.<span class="hljs-property">prop2</span>.<span class="hljs-title function_">push</span>(<span class="hljs-number">999</span>);<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(instanceA.<span class="hljs-property">prop2</span>);  <span class="hljs-comment">// [ 9, 5, 2, 7, 999 ]</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(instanceB.<span class="hljs-property">prop2</span>);  <span class="hljs-comment">// [ 9, 5, 2, 7 ]</span><br>instanceA.<span class="hljs-title function_">printProp1</span>();  <span class="hljs-comment">// 9527</span><br></code></pre></td></tr></table></figure>
+
+<p>类其实属于 ES6 的语法糖，虽然表面上看起来可以支持正式的面向对象编程，但实际上它背后使用的仍让是原型和构造函数概念。</p>
+
+    
+        
+        
+        <div class="post-nav">
+            <div class="post-nav-item">
+                
+            </div>
+            <div class="post-nav-item">
+                
+                    <a href="/2022/07/09/JavaScript%E6%95%B0%E7%BB%84%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/" rel="next" title="JavaScript 数组常用操作">
+                        JavaScript 数组常用操作&nbsp;<i class="icon-arrow_forward_ios"></i>
+                    </a>
+                
+            </div>
+        </div>
+    
+</article>
+
+    </main>
+</div>
+
+<footer class="footer-outer">
+    <div class="footer-inner">
+        <div class="copyright">
+            Copyright © 2021~2022 <a target="_blank" rel="noopener" href="https://github.com/SummerDiver"><i
+                        class="icon-pacmanr"></i>Summer Diver<i class="icon-pacmanl"></i></a> <br>
+            Powered by <a target="_blank" rel="noopener" href="http://hexo.io">Hexo<i class="icon-new-tab"></i></a>
+            <br>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- scripts list from theme config.yml -->
+    
+        <script src="/js/jquery-3.6.0.min.js"></script>
+    
+        <script src="/js/chippy.js"></script>
+    
+        <script src="/js/menubar.js"></script>
+    
+        <script src="/js/toc.js"></script>
+    
+
+</body>
+</html>
