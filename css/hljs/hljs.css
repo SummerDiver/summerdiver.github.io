@@ -1,4 +1,5 @@
 .hljs {
-  display: table-row-group !important;
   background: #f9e2be !important;
+  padding: 0 !important;
+  -webkit-text-size-adjust: 100% !important;
 }

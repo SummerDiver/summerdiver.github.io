@@ -1,0 +1,292 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>litetrace —— 一个简易版的 trace-cmd 工具实现 - 鼠熊部落格</title>
+  
+  <!-- stylesheets list from _config.yml -->
+  
+  <link rel="stylesheet" href="/css/chippy.css">
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <nav class="menu-outer">
+    <div class="menu-inner">
+      
+      <a class="menu-inner-item" href="/">
+        <span class="menu-inner-item-icon"></span>
+        <span class="menu-inner-item-text">首页</span>
+      </a>
+      
+      <a class="menu-inner-item" href="/about">
+        <span class="menu-inner-item-icon"></span>
+        <span class="menu-inner-item-text">关于我</span>
+      </a>
+      
+      <a class="menu-inner-item" href="/archives">
+        <span class="menu-inner-item-icon"></span>
+        <span class="menu-inner-item-text">归档</span>
+      </a>
+      
+    </div>
+  </nav>
+
+  <header class="header-outer">
+    <div class="header-inner">
+      <div class="header-info">
+        
+        <h1 class="header-info-title">
+          Chipmunk &amp; Panda
+        </h1>
+        
+        
+        <h3 class="header-info-subtitle">
+          -- 鼠熊部落格
+        </h3>
+        
+        
+        <p class="header-info-motto">
+          All work and no play makes Jack a dull boy.
+        </p>
+        
+        <div class="header-info-contact">
+          <a target="_blank" rel="noopener" href="https://github.com/SummerDiver" class="header-info-contact-icon">
+            <i class="icon-github"></i>
+          </a>
+          <a target="_blank" rel="noopener" href="https://weibo.com/u/7390819624" class="header-info-contact-icon">
+            <i class="icon-sina-weibo"></i>
+          </a>
+          <a href="mailto:summerdiver@yeah.net" class="header-info-contact-icon">
+            <i class="icon-mail4"></i>
+          </a>
+          <a href="" class="header-info-contact-icon" onclick="return false">
+            <i class="icon-IE"></i>
+          </a>
+        </div>
+      </div>
+      <a href="#content" class="header-arrow">
+        <i class="icon-forward2"></i>
+      </a>
+    </div>
+  </header>
+
+  <div id="content" class="content-outer clearfix">
+    <aside id="content-aside" class="content-aside">
+      
+
+<div class="aside-card aside-toc">
+  <h3>文章目录</h3>
+  <div class="toc-content">
+    <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#ftrace"><span class="post-toc-number">1.</span> <span class="post-toc-text">ftrace</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E8%B7%9F%E8%B8%AA%E5%86%85%E6%A0%B8%E6%80%81%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">跟踪内核态函数调用</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E7%89%B9%E5%AE%9A%E5%87%BD%E6%95%B0%E8%B7%9F%E8%B8%AA"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">特定函数跟踪</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#trace-cmd"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">trace-cmd</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E7%AE%80%E6%98%93-litetrace-%E5%AE%9E%E7%8E%B0"><span class="post-toc-number">2.</span> <span class="post-toc-text">简易 litetrace 实现</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%8A%9F%E8%83%BD%E8%AE%BE%E8%AE%A1"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">功能设计</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E7%AE%80%E6%98%93%E5%91%BD%E4%BB%A4%E8%A1%8C"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">简易命令行</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E6%89%93%E5%BC%80%E5%92%8C%E5%85%B3%E9%97%AD%E8%B7%9F%E8%B8%AA"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">打开和关闭跟踪</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E6%89%93%E5%BC%80-function-%E8%B7%9F%E8%B8%AA"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">打开 function 跟踪</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E6%89%93%E5%BC%80-function-%E8%BF%87%E6%BB%A4"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">打开 function 过滤</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E6%9F%A5%E7%9C%8B%E5%BD%93%E5%89%8D%E9%85%8D%E7%BD%AE%E7%8A%B6%E6%80%81"><span class="post-toc-number">2.6.</span> <span class="post-toc-text">查看当前配置状态</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%AF%BC%E5%87%BA%E8%B7%9F%E8%B8%AA%E7%BB%93%E6%9E%9C"><span class="post-toc-number">2.7.</span> <span class="post-toc-text">导出跟踪结果</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E5%AE%8C%E6%95%B4%E4%BB%A3%E7%A0%81"><span class="post-toc-number">3.</span> <span class="post-toc-text">完整代码</span></a></li></ol>
+  </div>
+</div>
+
+
+<div class="aside-card aside-ov">
+  <div class="author">
+    <div class="author-avatar">
+      <img src="/images/avatar.jpg">
+    </div>
+    <h4 class="author-name">暑熊</h4>
+    <p class="author-motto">自家慢诩便便腹，开卷方知未读书。</p>
+  </div>
+  <div class="divider-horizontal"></div>
+  <div class="site-state">
+    <a class="site-state-item" href="/archives">
+      <span class="site-state-item-count">21</span>
+      <span class="site-state-item-name">归档</span>
+    </a>
+    <div class="divider-vertical"></div>
+    <a class="site-state-item" href="/categories">
+      <span class="site-state-item-count">5</span>
+      <span class="site-state-item-name">分类</span>
+    </a>
+    <div class="divider-vertical"></div>
+    <a class="site-state-item" href="/tags">
+      <span class="site-state-item-count">17</span>
+      <span class="site-state-item-name">标签</span>
+    </a>
+  </div>
+  <div class="divider-horizontal"></div>
+  <div class="friends">
+    <div>
+      <i class="icon-link"></i>&nbsp;友情链接
+    </div>
+    
+    <div class="no-friends">
+      <span class="icon-tongue"></span><br>
+      <span>朋友都没有，好像一条狗</span>
+    </div>
+    
+    <ul class="friends-list">
+      
+    </ul>
+  </div>
+</div>
+    </aside>
+    <main class="content-inner">
+      <article id="post">
+  <div class="post-header">
+  
+  <h1 class="post-title" href="/2023/03/15/litetrace%E2%80%94%E2%80%94%E4%B8%80%E4%B8%AA%E7%AE%80%E6%98%93%E7%89%88%E7%9A%84trace-cmd%E5%B7%A5%E5%85%B7%E5%AE%9E%E7%8E%B0/">litetrace —— 一个简易版的 trace-cmd 工具实现</h1>
+  
+
+  <div class="post-meta">
+    <time class="post-date" datetime="2023-03-15T03:52:52.000Z">
+      <i class="icon-calendar"></i>&nbsp;2023-03-15
+    </time>
+
+    
+    <span class="post-categories">
+      <i class="icon-folder">&nbsp;</i>
+      <a class="post-category-link" href="/categories/%E4%BD%9C%E4%B8%9A/">作业</a>
+    </span>
+    
+
+    
+    <span class="post-tags">
+      <i class="icon-price-tags">&nbsp;</i>
+      <a class="post-tag-link" href="/tags/Linux/" rel="tag">#Linux</a>&nbsp;<a class="post-tag-link" href="/tags/Python/" rel="tag">#Python</a>&nbsp;<a class="post-tag-link" href="/tags/ftrace/" rel="tag">#ftrace</a>&nbsp;<a class="post-tag-link" href="/tags/trace-cmd/" rel="tag">#trace-cmd</a>
+    </span>
+    
+  </div>
+</div>
+  
+  <p>实现一个简易版的 trace-cmd 工具: litetrace</p>
+<ol>
+<li>支持打开 function 跟踪和 function 过滤，动态开启和关闭跟踪</li>
+<li>支持查看当前配置状态：<ul>
+<li>跟踪类型 current_tracer</li>
+<li>开关状态 tracing_on</li>
+<li>function 过滤器状态 set_ftrace_filter</li>
+</ul>
+</li>
+<li>支持导出跟踪结果<ul>
+<li>打印 trace 中的跟踪内容</li>
+</ul>
+</li>
+</ol>
+<p>完整代码见文末。</p>
+<span id="more"></span>
+
+<h1 id="ftrace"><a href="#ftrace" class="headerlink" title="ftrace"></a>ftrace</h1><blockquote>
+<p>From WikiPedia.<br><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Ftrace">ftrace</a> (Function Tracer) is a tracing framework for the Linux kernel. Although its original name, Function Tracer, came from ftrace’s ability to record information related to various function calls performed while the kernel is running, ftrace’s tracing capabilities cover a much broader range of kernel’s internal operations.</p>
+</blockquote>
+<p>ftrace 是 Linux 内核自带的一个调试跟踪工具，便于对<strong>用户态</strong>和<strong>内核态</strong>程序进行深入分析（轨迹、性能、系统调用等）。</p>
+<p>ftrace 通过文件进行交互，即通过修改一些特定的文件并写入特定内容来使其执行不同的功能。本文仅涉及最最最最基础的<strong>跟踪内核态函数调用</strong>以及<strong>特定函数跟踪功能</strong>。</p>
+<h2 id="跟踪内核态函数调用"><a href="#跟踪内核态函数调用" class="headerlink" title="跟踪内核态函数调用"></a>跟踪内核态函数调用</h2><blockquote>
+<p>最好应当是在 root 用户下干这些事（不然可能没权限），如果 &#x2F;sys&#x2F;kernel&#x2F;debug 目录是空的，需要执行一下 <code>sudo mount -t debugfs debugfs /sys/kernel/debug</code>。</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 进入 ftrace 工作目录</span><br><span class="hljs-built_in">cd</span> /sys/kernel/debug/tracing<br><span class="hljs-comment"># 设置 trace 类型为 current_tracer</span><br><span class="hljs-built_in">echo</span> <span class="hljs-keyword">function</span> &gt; current_tracer<br><span class="hljs-comment"># 清空历史 trace 信息</span><br><span class="hljs-built_in">echo</span> &gt; trace<br><span class="hljs-comment"># 打开 trace</span><br><span class="hljs-built_in">echo</span> 1 &gt; tracing_on<br><span class="hljs-comment"># 关闭 trace</span><br><span class="hljs-built_in">echo</span> 0 &gt; tracing_on<br><span class="hljs-comment"># 显示 trace 的前 50 行信息</span><br><span class="hljs-built_in">head</span> n 50 trace<br><span class="hljs-comment"># 以下是输出（这句话显然不是）</span><br><span class="hljs-comment"># tracer: function</span><br><span class="hljs-comment">#</span><br><span class="hljs-comment"># entries-in-buffer/entries-written: 187009/210400   #P:8</span><br><span class="hljs-comment">#</span><br><span class="hljs-comment">#                                _-----=&gt; irqs-off</span><br><span class="hljs-comment">#                               / _----=&gt; need-resched</span><br><span class="hljs-comment">#                              | / _---=&gt; hardirq/softirq</span><br><span class="hljs-comment">#                              || / _--=&gt; preempt-depth</span><br><span class="hljs-comment">#                              ||| /     delay</span><br><span class="hljs-comment">#           TASK-PID     CPU#  ||||   TIMESTAMP  FUNCTION</span><br><span class="hljs-comment">#              | |         |   ||||      |         |</span><br>            bash-221     [002] ....   508.325121: file_ra_state_init &lt;-do_dentry_open<br>            bash-221     [002] ....   508.325123: do_truncate &lt;-path_openat<br>            bash-221     [002] ....   508.325123: dentry_needs_remove_privs &lt;-do_truncate<br>            bash-221     [002] ....   508.325123: dentry_needs_remove_privs.part.0 &lt;-do_truncate<br>            bash-221     [002] ....   508.325124: should_remove_suid &lt;-dentry_needs_remove_privs.part.0<br>            bash-221     [002] ....   508.325124: security_inode_need_killpriv &lt;-dentry_needs_remove_privs.part.0<br>            bash-221     [002] ....   508.325125: cap_inode_need_killpriv &lt;-security_inode_need_killpriv<br>            bash-221     [002] ....   508.325125: __vfs_getxattr &lt;-cap_inode_need_killpriv<br>            bash-221     [002] ....   508.325125: xattr_resolve_name &lt;-__vfs_getxattr<br>            bash-221     [002] ....   508.325126: is_bad_inode &lt;-xattr_resolve_name<br>            bash-221     [002] ....   508.325126: down_write &lt;-do_truncate<br>            bash-221     [002] ....   508.325126: notify_change &lt;-do_truncate<br>            bash-221     [002] ....   508.325127: current_time &lt;-notify_change<br>            bash-221     [002] ....   508.325127: ktime_get_coarse_real_ts64 &lt;-current_time<br>            bash-221     [002] ....   508.325127: timestamp_truncate &lt;-current_time<br>            bash-221     [002] ....   508.325128: security_inode_setattr &lt;-notify_change<br>            bash-221     [002] ....   508.325128: simple_setattr &lt;-notify_change<br>            bash-221     [002] ....   508.325128: setattr_prepare &lt;-simple_setattr<br>            bash-221     [002] ....   508.325129: inode_newsize_ok &lt;-setattr_prepare<br>            bash-221     [002] ....   508.325129: truncate_setsize &lt;-simple_setattr<br>            bash-221     [002] ....   508.325129: truncate_pagecache &lt;-simple_setattr<br>            bash-221     [002] ....   508.325130: unmap_mapping_range &lt;-truncate_pagecache<br>            bash-221     [002] ....   508.325130: unmap_mapping_pages &lt;-truncate_pagecache<br>            bash-221     [002] ....   508.325130: down_write &lt;-unmap_mapping_pages<br>            bash-221     [002] ....   508.325130: up_write &lt;-unmap_mapping_pages<br>            bash-221     [002] ....   508.325131: truncate_inode_pages_range &lt;-truncate_pagecache<br>            bash-221     [002] ....   508.325131: unmap_mapping_range &lt;-simple_setattr<br>            bash-221     [002] ....   508.325131: unmap_mapping_pages &lt;-simple_setattr<br>            bash-221     [002] ....   508.325131: down_write &lt;-unmap_mapping_pages<br>            bash-221     [002] ....   508.325131: up_write &lt;-unmap_mapping_pages<br>            bash-221     [002] ....   508.325132: setattr_copy &lt;-simple_setattr<br>            bash-221     [002] ....   508.325132: __mark_inode_dirty &lt;-simple_setattr<br>            bash-221     [002] ....   508.325132: _raw_spin_lock &lt;-__mark_inode_dirty<br>            bash-221     [002] ....   508.325133: __inode_attach_wb &lt;-__mark_inode_dirty<br>            bash-221     [002] ....   508.325133: __fsnotify_parent &lt;-notify_change<br>            bash-221     [002] ....   508.325134: up_write &lt;-do_truncate<br>            bash-221     [002] ....   508.325134: mnt_drop_write &lt;-path_openat<br>            bash-221     [002] ....   508.325136: terminate_walk &lt;-path_openat<br>            bash-221     [002] ....   508.325136: dput &lt;-terminate_walk<br></code></pre></td></tr></table></figure>
+
+<h2 id="特定函数跟踪"><a href="#特定函数跟踪" class="headerlink" title="特定函数跟踪"></a>特定函数跟踪</h2><p>在开始跟踪前设置一下要跟踪的函数，即可仅跟踪特定函数。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 设置 set_ftrace_filter 为 vfs_write，即只跟踪 vfs_write 函数。</span><br><span class="hljs-built_in">echo</span> vfs_write &gt; set_ftrace_filter<br></code></pre></td></tr></table></figure>
+
+<h2 id="trace-cmd"><a href="#trace-cmd" class="headerlink" title="trace-cmd"></a>trace-cmd</h2><p>直接使用 ftrace 未免有些繁琐，因此 ftrace 团队把上面那些操作封装了一下，整出来一个 <a target="_blank" rel="noopener" href="https://github.com/rostedt/trace-cmd">trace-cmd</a>。简而言之就是输入一条指令，trace-cmd 就自动把该指令对应的一连串操作给执行掉，而无需用户自己一个个敲了。</p>
+<h1 id="简易-litetrace-实现"><a href="#简易-litetrace-实现" class="headerlink" title="简易 litetrace 实现"></a>简易 litetrace 实现</h1><p>重申一遍作业内容，虽然在文章开头就有。</p>
+<p>实现一个简易版的 trace-cmd 工具: litetrace</p>
+<ol>
+<li>支持打开 function 跟踪和 function 过滤，动态开启和关闭跟踪</li>
+<li>支持查看当前配置状态：<ul>
+<li>跟踪类型 current_tracer</li>
+<li>开关状态 tracing_on</li>
+<li>function 过滤器状态 set_ftrace_filter</li>
+</ul>
+</li>
+<li>支持导出跟踪结果<ul>
+<li>打印 trace 中的跟踪内容</li>
+</ul>
+</li>
+</ol>
+<p>实际就是根据用户输入执行相应的指令，相当适合用 Python 来应付。</p>
+<p>思路：使用 <code>input()</code> 函数获取用户输入，根据输入调用不同的函数，每个函数对应不同的功能，实际就是对应了一条或者多条 bash 命令。</p>
+<p>使用 <code>subprocess</code> 来执行系统命令，或者用其他的方法比如 <code>os.system()</code> 均可，全凭喜好。</p>
+<h2 id="功能设计"><a href="#功能设计" class="headerlink" title="功能设计"></a>功能设计</h2><p>这里直接用一个 help() 函数，打印出所支持的所有功能和对应的指令。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">help</span>():<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;====================&#x27;</span>)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;help: 查看帮助&#x27;</span>)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;start: 打开跟踪&#x27;</span>)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;stop: 停止跟踪&#x27;</span>)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;start-func: 打开 function 跟踪&#x27;</span>)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;start-func-filter func_name: 打开 function 过滤并设置跟踪函数名为 func_name&#x27;</span>)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;show-ct: 查看跟踪类型 current_tracer&#x27;</span>)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;show-to: 查看状态 tracing_on&#x27;</span>)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;show-sff: 查看过滤器状态 set_ftrace_filter&#x27;</span>)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;show n: 打印 trace 中前 n 行的跟踪内容&#x27;</span>)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;exit: 退出&#x27;</span>)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;====================&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<h2 id="简易命令行"><a href="#简易命令行" class="headerlink" title="简易命令行"></a>简易命令行</h2><p>模拟一个简单的命令行，看起来会比较像那么回事。</p>
+<p>设计一个死循环，不断获取用户输入，将每次输入根据空格划分成多个单词，用一个字典将指令与函数对应起来，就差不多得了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs python">command = <span class="hljs-string">&#x27;&#x27;</span> <span class="hljs-comment"># 有的函数可能会需要传参，因此将用户输入存在全局变量 command 里以便获取。</span><br><br>command_dict = &#123;<br>    <span class="hljs-comment"># &#x27;指令&#x27;: 函数</span><br>    <span class="hljs-string">&#x27;help&#x27;</span>: <span class="hljs-built_in">help</span>,<br>    <span class="hljs-string">&#x27;start&#x27;</span>: start,<br>    <span class="hljs-string">&#x27;stop&#x27;</span>: stop,<br>    <span class="hljs-string">&#x27;start-func&#x27;</span>: setFunctionTracing,<br>    <span class="hljs-string">&#x27;start-func-filter&#x27;</span>: startFunctionFilter,<br>    <span class="hljs-string">&#x27;show-ct&#x27;</span>: showCurrentTracer,<br>    <span class="hljs-string">&#x27;show-to&#x27;</span>: showTraceingOn,<br>    <span class="hljs-string">&#x27;show-sff&#x27;</span>: showSetFtraceFilter,<br>    <span class="hljs-string">&#x27;show&#x27;</span>: show,<br>    <span class="hljs-string">&#x27;exit&#x27;</span>: exit<br>&#125;<br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    <span class="hljs-built_in">help</span>()  <span class="hljs-comment"># 开局给个帮助信息</span><br>    <span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:<br>        command = <span class="hljs-built_in">input</span>(<span class="hljs-string">&#x27;&gt;&gt;&gt; &#x27;</span>).split()<br>        <span class="hljs-keyword">if</span> command:<br>            command_dict.get(command.pop(<span class="hljs-number">0</span>))()  <span class="hljs-comment"># 将输入的第一个单词视为指令并执行指令对应的函数</span><br></code></pre></td></tr></table></figure>
+
+<p>注意，上面 <code>command_dict.get(command.pop(0))</code> 未考虑没有对应指令的情况，解决方法是给个默认返回就可以了，不赘述。</p>
+<h2 id="打开和关闭跟踪"><a href="#打开和关闭跟踪" class="headerlink" title="打开和关闭跟踪"></a>打开和关闭跟踪</h2><blockquote>
+<ul>
+<li>指定 <code>cwd</code> 参数，这样就不用 <code>cd /sys/kernel/debug/tracing</code> 了。</li>
+<li><code>echo content &gt; file</code> 的指令需要设置直接在 shell 中执行 <code>shell=True</code>，不然会被理解成 <code>echo &quot;content &gt; file&quot;</code> 来执行。</li>
+</ul>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">start</span>():  <span class="hljs-comment"># 打开跟踪</span><br>    subprocess.run([<span class="hljs-string">&#x27;echo &gt; trace&#x27;</span>],<br>                   cwd=<span class="hljs-string">&#x27;/sys/kernel/debug/tracing&#x27;</span>, shell=<span class="hljs-literal">True</span>)<br>    subprocess.run([<span class="hljs-string">&#x27;echo 1 &gt; tracing_on&#x27;</span>],<br>                   cwd=<span class="hljs-string">&#x27;/sys/kernel/debug/tracing&#x27;</span>, shell=<span class="hljs-literal">True</span>)<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">stop</span>():  <span class="hljs-comment"># 关闭跟踪</span><br>    subprocess.run([<span class="hljs-string">&#x27;echo 0 &gt; tracing_on&#x27;</span>],<br>                   cwd=<span class="hljs-string">&#x27;/sys/kernel/debug/tracing&#x27;</span>, shell=<span class="hljs-literal">True</span>)<br></code></pre></td></tr></table></figure>
+
+<h2 id="打开-function-跟踪"><a href="#打开-function-跟踪" class="headerlink" title="打开 function 跟踪"></a>打开 function 跟踪</h2><p>套娃函数调用，便于复用。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">setFunctionTracing</span>():  <span class="hljs-comment"># 设置 trace 类型为 function</span><br>    stop()<br>    subprocess.run([<span class="hljs-string">&#x27;echo function &gt; current_tracer&#x27;</span>],<br>                   cwd=<span class="hljs-string">&#x27;/sys/kernel/debug/tracing&#x27;</span>, shell=<span class="hljs-literal">True</span>)<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">startFunctionTracing</span>():  <span class="hljs-comment"># 打开 function 跟踪</span><br>    setFunctionTracing()<br>    start()<br></code></pre></td></tr></table></figure>
+
+<h2 id="打开-function-过滤"><a href="#打开-function-过滤" class="headerlink" title="打开 function 过滤"></a>打开 function 过滤</h2><p>停跟踪，设置 function 跟踪，设置 function 过滤。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">startFunctionFilter</span>():<br>    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> command:  <span class="hljs-comment"># 需要传参要跟踪的函数名</span><br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;!!--------------------!!&#x27;</span>)<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;Error: no function name!&#x27;</span>)<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;!!--------------------!!&#x27;</span>)<br>        <span class="hljs-keyword">return</span><br>    func = command.pop(<span class="hljs-number">0</span>)<br>    stop()<br>    setFunctionTracing()<br>    subprocess.run([<span class="hljs-string">&#x27;echo &#123;&#125; &gt; set_ftrace_filter&#x27;</span>.<span class="hljs-built_in">format</span>(func)],<br>                   cwd=<span class="hljs-string">&#x27;/sys/kernel/debug/tracing&#x27;</span>, shell=<span class="hljs-literal">True</span>)<br></code></pre></td></tr></table></figure>
+
+<h2 id="查看当前配置状态"><a href="#查看当前配置状态" class="headerlink" title="查看当前配置状态"></a>查看当前配置状态</h2><p>其实就是查看对应文件的内容。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">showCurrentTracer</span>():<br>    subprocess.run([<span class="hljs-string">&#x27;cat&#x27;</span>, <span class="hljs-string">&#x27;current_tracer&#x27;</span>], cwd=<span class="hljs-string">&#x27;/sys/kernel/debug/tracing&#x27;</span>)<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">showTraceingOn</span>():<br>    subprocess.run([<span class="hljs-string">&#x27;cat&#x27;</span>, <span class="hljs-string">&#x27;tracing_on&#x27;</span>], cwd=<span class="hljs-string">&#x27;/sys/kernel/debug/tracing&#x27;</span>)<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">showSetFtraceFilter</span>():<br>    subprocess.run([<span class="hljs-string">&#x27;cat&#x27;</span>, <span class="hljs-string">&#x27;set_ftrace_filter&#x27;</span>],<br>                   cwd=<span class="hljs-string">&#x27;/sys/kernel/debug/tracing&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<h2 id="导出跟踪结果"><a href="#导出跟踪结果" class="headerlink" title="导出跟踪结果"></a>导出跟踪结果</h2><p>除了接受指令，还额外接受一个参数 n，以表示要打印前 n 行的跟踪内容。</p>
+<p>要注意判断没传 n 以及传的不是个非负整数的情况。</p>
+<blockquote>
+<p>其实可以将 n 设为可选，即当没传 n 的时候则打印全部内容，那样的话把 <code>head</code> 改为 <code>cat</code> 就差不多了，但是一般 trace 内容都超超超多，自认为 <code>cat</code> 可不兴随便用，所以就没搞了，差不多那意思就成。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">show</span>():  <span class="hljs-comment"># 打印 trace 中的跟踪内容</span><br>    <span class="hljs-keyword">if</span> command:<br>        n = command.pop(<span class="hljs-number">0</span>)<br>        <span class="hljs-keyword">if</span> n.isdigit() <span class="hljs-keyword">and</span> <span class="hljs-built_in">int</span>(n) &gt;= <span class="hljs-number">0</span>:<br>            subprocess.run([<span class="hljs-string">&#x27;head&#x27;</span>, <span class="hljs-string">&#x27;-n&#x27;</span>, n, <span class="hljs-string">&#x27;trace&#x27;</span>],<br>                           cwd=<span class="hljs-string">&#x27;/sys/kernel/debug/tracing&#x27;</span>)<br>        <span class="hljs-keyword">else</span>:<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;!!--------------------!!&#x27;</span>)<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;Error: invalid num!&#x27;</span>)<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;!!--------------------!!&#x27;</span>)<br>            <span class="hljs-keyword">return</span><br>    <span class="hljs-keyword">else</span>:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;!!--------------------!!&#x27;</span>)<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;Error: no num!&#x27;</span>)<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;!!--------------------!!&#x27;</span>)<br>        <span class="hljs-keyword">return</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h1><p>实际没什么技术含量……主要目的其实是熟悉一下 ftrace 的使用罢了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> subprocess<br><br>command = <span class="hljs-string">&#x27;&#x27;</span>  <span class="hljs-comment"># 有的函数可能会需要传参，因此将用户输入存在全局变量 command 里以便获取。</span><br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">start</span>():  <span class="hljs-comment"># 打开跟踪</span><br>    subprocess.run([<span class="hljs-string">&#x27;echo &gt; trace&#x27;</span>],<br>                   cwd=<span class="hljs-string">&#x27;/sys/kernel/debug/tracing&#x27;</span>, shell=<span class="hljs-literal">True</span>)<br>    subprocess.run([<span class="hljs-string">&#x27;echo 1 &gt; tracing_on&#x27;</span>],<br>                   cwd=<span class="hljs-string">&#x27;/sys/kernel/debug/tracing&#x27;</span>, shell=<span class="hljs-literal">True</span>)<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">stop</span>():  <span class="hljs-comment"># 关闭跟踪</span><br>    subprocess.run([<span class="hljs-string">&#x27;echo 0 &gt; tracing_on&#x27;</span>],<br>                   cwd=<span class="hljs-string">&#x27;/sys/kernel/debug/tracing&#x27;</span>, shell=<span class="hljs-literal">True</span>)<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">setFunctionTracing</span>():  <span class="hljs-comment"># 设置 trace 类型为 function</span><br>    stop()<br>    subprocess.run([<span class="hljs-string">&#x27;echo function &gt; current_tracer&#x27;</span>],<br>                   cwd=<span class="hljs-string">&#x27;/sys/kernel/debug/tracing&#x27;</span>, shell=<span class="hljs-literal">True</span>)<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">startFunctionTracing</span>():  <span class="hljs-comment"># 打开 function 跟踪</span><br>    setFunctionTracing()<br>    start()<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">startFunctionFilter</span>():<br>    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> command:  <span class="hljs-comment"># 需要传参要跟踪的函数名</span><br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;!!--------------------!!&#x27;</span>)<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;Error: no function name!&#x27;</span>)<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;!!--------------------!!&#x27;</span>)<br>        <span class="hljs-keyword">return</span><br>    func = command.pop(<span class="hljs-number">0</span>)<br>    stop()<br>    setFunctionTracing()<br>    subprocess.run([<span class="hljs-string">&#x27;echo &#123;&#125; &gt; set_ftrace_filter&#x27;</span>.<span class="hljs-built_in">format</span>(func)],<br>                   cwd=<span class="hljs-string">&#x27;/sys/kernel/debug/tracing&#x27;</span>, shell=<span class="hljs-literal">True</span>)<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">showCurrentTracer</span>():<br>    subprocess.run([<span class="hljs-string">&#x27;cat&#x27;</span>, <span class="hljs-string">&#x27;current_tracer&#x27;</span>], cwd=<span class="hljs-string">&#x27;/sys/kernel/debug/tracing&#x27;</span>)<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">showTraceingOn</span>():<br>    subprocess.run([<span class="hljs-string">&#x27;cat&#x27;</span>, <span class="hljs-string">&#x27;tracing_on&#x27;</span>], cwd=<span class="hljs-string">&#x27;/sys/kernel/debug/tracing&#x27;</span>)<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">showSetFtraceFilter</span>():<br>    subprocess.run([<span class="hljs-string">&#x27;cat&#x27;</span>, <span class="hljs-string">&#x27;set_ftrace_filter&#x27;</span>],<br>                   cwd=<span class="hljs-string">&#x27;/sys/kernel/debug/tracing&#x27;</span>)<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">show</span>():  <span class="hljs-comment"># 打印 trace 中的跟踪内容</span><br>    <span class="hljs-keyword">if</span> command:<br>        n = command.pop(<span class="hljs-number">0</span>)<br>        <span class="hljs-keyword">if</span> n.isdigit() <span class="hljs-keyword">and</span> <span class="hljs-built_in">int</span>(n) &gt;= <span class="hljs-number">0</span>:<br>            subprocess.run([<span class="hljs-string">&#x27;head&#x27;</span>, <span class="hljs-string">&#x27;-n&#x27;</span>, n, <span class="hljs-string">&#x27;trace&#x27;</span>],<br>                           cwd=<span class="hljs-string">&#x27;/sys/kernel/debug/tracing&#x27;</span>)<br>        <span class="hljs-keyword">else</span>:<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;!!--------------------!!&#x27;</span>)<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;Error: invalid num!&#x27;</span>)<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;!!--------------------!!&#x27;</span>)<br>            <span class="hljs-keyword">return</span><br>    <span class="hljs-keyword">else</span>:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;!!--------------------!!&#x27;</span>)<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;Error: no num!&#x27;</span>)<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;!!--------------------!!&#x27;</span>)<br>        <span class="hljs-keyword">return</span><br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">help</span>():<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;====================&#x27;</span>)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;help: 查看帮助&#x27;</span>)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;start: 打开跟踪&#x27;</span>)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;stop: 停止跟踪&#x27;</span>)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;start-func: 打开 function 跟踪&#x27;</span>)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;start-func-filter func_name: 打开 function 过滤并设置跟踪函数名为 func_name&#x27;</span>)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;show-ct: 查看跟踪类型 current_tracer&#x27;</span>)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;show-to: 查看状态 tracing_on&#x27;</span>)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;show-sff: 查看过滤器状态 set_ftrace_filter&#x27;</span>)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;show n: 打印 trace 中前 n 行的跟踪内容&#x27;</span>)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;exit: 退出&#x27;</span>)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;====================&#x27;</span>)<br><br><br>command_dict = &#123;<br>    <span class="hljs-comment"># &#x27;指令&#x27;: 函数</span><br>    <span class="hljs-string">&#x27;help&#x27;</span>: <span class="hljs-built_in">help</span>,<br>    <span class="hljs-string">&#x27;start&#x27;</span>: start,<br>    <span class="hljs-string">&#x27;stop&#x27;</span>: stop,<br>    <span class="hljs-string">&#x27;start-func&#x27;</span>: setFunctionTracing,<br>    <span class="hljs-string">&#x27;start-func-filter&#x27;</span>: startFunctionFilter,<br>    <span class="hljs-string">&#x27;show-ct&#x27;</span>: showCurrentTracer,<br>    <span class="hljs-string">&#x27;show-to&#x27;</span>: showTraceingOn,<br>    <span class="hljs-string">&#x27;show-sff&#x27;</span>: showSetFtraceFilter,<br>    <span class="hljs-string">&#x27;show&#x27;</span>: show,<br>    <span class="hljs-string">&#x27;exit&#x27;</span>: exit<br>&#125;<br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    <span class="hljs-built_in">help</span>()  <span class="hljs-comment"># 开局给个帮助信息</span><br>    <span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:<br>        command = <span class="hljs-built_in">input</span>(<span class="hljs-string">&#x27;&gt;&gt;&gt; &#x27;</span>).split()<br>        <span class="hljs-keyword">if</span> command:<br>            command_dict.get(command.pop(<span class="hljs-number">0</span>))()  <span class="hljs-comment"># 将输入的第一个单词视为指令并执行指令对应的函数</span><br><br></code></pre></td></tr></table></figure>
+
+  
+  
+  
+  <div class="post-nav">
+    <div class="post-nav-item">
+      
+      <a href="/2023/10/18/SSH-%E9%9A%A7%E9%81%93%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5-MySQL-%E6%95%B0%E6%8D%AE%E5%BA%93%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/" rel="prev" title="SSH 隧道远程连接 MySQL 数据库问题记录">
+        <i class="icon-arrow_back_ios"></i>&nbsp;SSH 隧道远程连接 MySQL 数据库问题记录
+      </a>
+      
+    </div>
+    <div class="post-nav-item">
+      
+      <a href="/2022/08/14/MySQL%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7%E5%B9%B6%E6%8E%88%E6%9D%83%E8%BF%9C%E7%A8%8B%E8%AE%BF%E9%97%AE/" rel="next" title="MySQL 创建用户并授权远程访问">
+        MySQL 创建用户并授权远程访问&nbsp;<i class="icon-arrow_forward_ios"></i>
+      </a>
+      
+    </div>
+  </div>
+  
+</article>
+    </main>
+  </div>
+
+  <footer class="footer-outer">
+    <div class="footer-inner">
+      <div class="copyright">
+        Copyright © 2021~2024 <a target="_blank" rel="noopener" href="https://github.com/SummerDiver"><i class="icon-pacmanr"></i>&nbsp;暑熊&nbsp;<i class="icon-pacmanl"></i></a> <br>
+        Powered by <a target="_blank" rel="noopener" href="http://hexo.io">Hexo<i class="icon-new-tab"></i></a>
+        <br>
+      </div>
+    </div>
+  </footer>
+
+  
+  <!-- scripts list from theme config.yml -->
+  
+  <script src="/js/jquery-3.6.0.min.js"></script>
+  
+  <script src="/js/chippy.js"></script>
+  
+  <script src="/js/menubar.js"></script>
+  
+  <script src="/js/toc.js"></script>
+  
+  
+</body>
+
+</html>

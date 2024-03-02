@@ -67,6 +67,9 @@ blockquote {
   padding: 0 15px;
   margin: 0;
 }
+blockquote code {
+  background: #edcfa9;
+}
 iframe,
 img,
 video,

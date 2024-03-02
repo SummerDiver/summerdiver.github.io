@@ -1,24 +1,24 @@
 $(function () {
-  let tocTrack = function () {
+  const tocTrack = function () {
+    const scrollTop = $(document).scrollTop()
+    const $post = $('#post')
+    const heads = $post.children('h1,h2,h3,h4,h5,h6')
 
-    let scrollTop = $(document).scrollTop();
-    let $post = $('#post')
-    let heads = $post.children('h1,h2,h3,h4,h5,h6');
-
-    let $currentHeading = $(heads[0]);
-    for (let heading of heads) {
-      let $heading = $(heading);
+    let $currentHeading = $(heads[0])
+    for (const heading of heads) {
+      const $heading = $(heading)
       if ($heading.offset().top - scrollTop > 20) {
-        break;
+        break
       }
-      $currentHeading = $heading;
+      $currentHeading = $heading
     }
 
-    let anchorName = $currentHeading.attr('id');
-    let $toc = $(`.post-toc-link[href="#${anchorName}"]`);
+    const anchorName = $currentHeading.attr('id')
+    const encodedAnchorName = encodeURI(anchorName)
+    const $toc = $(`.post-toc-link[href="#${encodedAnchorName}"]`)
     if (!$toc.hasClass('toc-reached')) {
-      $('.toc-reached').removeClass('toc-reached');
-      $toc.addClass('toc-reached');
+      $('.toc-reached').removeClass('toc-reached')
+      $toc.addClass('toc-reached')
     }
   }
 

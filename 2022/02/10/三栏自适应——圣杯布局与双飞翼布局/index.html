@@ -2,163 +2,162 @@
 
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
-    <meta charset="UTF-8">
-    <title>三栏自适应——圣杯布局与双飞翼布局 - 鼠熊部落格</title>
-    
-        <!-- stylesheets list from _config.yml -->
-        
-            <link rel="stylesheet" href="/css/chippy.css">
-        
-    
-<meta name="generator" content="Hexo 6.2.0"></head>
+  <meta charset="UTF-8">
+  <title>三栏自适应——圣杯布局与双飞翼布局 - 鼠熊部落格</title>
+  
+  <!-- stylesheets list from _config.yml -->
+  
+  <link rel="stylesheet" href="/css/chippy.css">
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
 <body>
-<nav class="menu-outer">
+  <nav class="menu-outer">
     <div class="menu-inner">
-        
-            <a class="menu-inner-item" href="/">
-                <span class="menu-inner-item-icon"></span>
-                <span class="menu-inner-item-text">首页</span>
-            </a>
-        
-            <a class="menu-inner-item" href="/about">
-                <span class="menu-inner-item-icon"></span>
-                <span class="menu-inner-item-text">关于我</span>
-            </a>
-        
-            <a class="menu-inner-item" href="/archives">
-                <span class="menu-inner-item-icon"></span>
-                <span class="menu-inner-item-text">归档</span>
-            </a>
-        
+      
+      <a class="menu-inner-item" href="/">
+        <span class="menu-inner-item-icon"></span>
+        <span class="menu-inner-item-text">首页</span>
+      </a>
+      
+      <a class="menu-inner-item" href="/about">
+        <span class="menu-inner-item-icon"></span>
+        <span class="menu-inner-item-text">关于我</span>
+      </a>
+      
+      <a class="menu-inner-item" href="/archives">
+        <span class="menu-inner-item-icon"></span>
+        <span class="menu-inner-item-text">归档</span>
+      </a>
+      
     </div>
-</nav>
+  </nav>
 
-<header class="header-outer">
+  <header class="header-outer">
     <div class="header-inner">
-        <div class="header-info">
-            
-                <h1 class="header-info-title">
-                    Chipmunk &amp; Panda
-                </h1>
-            
-            
-                <h3 class="header-info-subtitle">
-                    -- 鼠熊部落格
-                </h3>
-            
-            
-                <p class="header-info-motto">
-                    All work and no play makes Jack a dull boy.
-                </p>
-            
-            <div class="header-info-contact">
-                <a target="_blank" rel="noopener" href="https://github.com/SummerDiver" class="header-info-contact-icon">
-                    <i class="icon-github"></i>
-                </a>
-                <a target="_blank" rel="noopener" href="https://weibo.com/u/7390819624" class="header-info-contact-icon">
-                    <i class="icon-sina-weibo"></i>
-                </a>
-                <a href="mailto:summerdiver@yeah.net" class="header-info-contact-icon">
-                    <i class="icon-mail4"></i>
-                </a>
-                <a href="" class="header-info-contact-icon" onclick="return false">
-                    <i class="icon-IE"></i>
-                </a>
-            </div>
-        </div>
-        <a href="#content" class="header-arrow">
-            <i class="icon-forward2"></i>
-        </a>
-    </div>
-</header>
-
-<div id="content" class="content-outer clearfix">
-    <aside id="content-aside" class="content-aside">
+      <div class="header-info">
         
-
-    <div class="aside-card aside-toc">
-        <h3>文章目录</h3>
-        <div class="toc-content">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E5%9C%A3%E6%9D%AF%E5%B8%83%E5%B1%80"><span class="post-toc-number">1.</span> <span class="post-toc-text">圣杯布局</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-HTML-%E7%BB%93%E6%9E%84"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">1. HTML 结构</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-%E8%83%8C%E6%99%AF%E9%A2%9C%E8%89%B2%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">2. 背景颜色（可选）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-%E6%B5%AE%E5%8A%A8"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">3. 浮动</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-%E8%AE%BE%E7%BD%AE%E5%AE%BD%E5%BA%A6"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">4. 设置宽度</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-%E4%B8%BA%E8%BE%B9%E6%A0%8F%E8%85%BE%E7%A9%BA"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">5. 为边栏腾空</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E5%8F%8C%E9%A3%9E%E7%BF%BC%E5%B8%83%E5%B1%80"><span class="post-toc-number">2.</span> <span class="post-toc-text">双飞翼布局</span></a></li></ol>
+        <h1 class="header-info-title">
+          Chipmunk &amp; Panda
+        </h1>
+        
+        
+        <h3 class="header-info-subtitle">
+          -- 鼠熊部落格
+        </h3>
+        
+        
+        <p class="header-info-motto">
+          All work and no play makes Jack a dull boy.
+        </p>
+        
+        <div class="header-info-contact">
+          <a target="_blank" rel="noopener" href="https://github.com/SummerDiver" class="header-info-contact-icon">
+            <i class="icon-github"></i>
+          </a>
+          <a target="_blank" rel="noopener" href="https://weibo.com/u/7390819624" class="header-info-contact-icon">
+            <i class="icon-sina-weibo"></i>
+          </a>
+          <a href="mailto:summerdiver@yeah.net" class="header-info-contact-icon">
+            <i class="icon-mail4"></i>
+          </a>
+          <a href="" class="header-info-contact-icon" onclick="return false">
+            <i class="icon-IE"></i>
+          </a>
         </div>
+      </div>
+      <a href="#content" class="header-arrow">
+        <i class="icon-forward2"></i>
+      </a>
     </div>
+  </header>
+
+  <div id="content" class="content-outer clearfix">
+    <aside id="content-aside" class="content-aside">
+      
+
+<div class="aside-card aside-toc">
+  <h3>文章目录</h3>
+  <div class="toc-content">
+    <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E5%9C%A3%E6%9D%AF%E5%B8%83%E5%B1%80"><span class="post-toc-number">1.</span> <span class="post-toc-text">圣杯布局</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-HTML-%E7%BB%93%E6%9E%84"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">1. HTML 结构</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-%E8%83%8C%E6%99%AF%E9%A2%9C%E8%89%B2%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">2. 背景颜色（可选）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-%E6%B5%AE%E5%8A%A8"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">3. 浮动</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-%E8%AE%BE%E7%BD%AE%E5%AE%BD%E5%BA%A6"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">4. 设置宽度</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-%E4%B8%BA%E8%BE%B9%E6%A0%8F%E8%85%BE%E7%A9%BA"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">5. 为边栏腾空</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E5%8F%8C%E9%A3%9E%E7%BF%BC%E5%B8%83%E5%B1%80"><span class="post-toc-number">2.</span> <span class="post-toc-text">双飞翼布局</span></a></li></ol>
+  </div>
+</div>
 
 
 <div class="aside-card aside-ov">
-    <div class="author">
-        <div class="author-avatar">
-            <img src="/images/avatar.jpg">
-        </div>
-        <h4 class="author-name">Summer Diver</h4>
-        <p class="author-motto">自家慢诩便便腹，开卷方知未读书。</p>
+  <div class="author">
+    <div class="author-avatar">
+      <img src="/images/avatar.jpg">
     </div>
-    <div class="divider-horizontal"></div>
-    <div class="site-state">
-        <a class="site-state-item" href="/archives">
-            <span class="site-state-item-count">17</span>
-            <span class="site-state-item-name">归档</span>
-        </a>
-        <div class="divider-vertical"></div>
-        <a class="site-state-item" href="/categories">
-            <span class="site-state-item-count">4</span>
-            <span class="site-state-item-name">分类</span>
-        </a>
-        <div class="divider-vertical"></div>
-        <a class="site-state-item" href="/tags">
-            <span class="site-state-item-count">10</span>
-            <span class="site-state-item-name">标签</span>
-        </a>
+    <h4 class="author-name">暑熊</h4>
+    <p class="author-motto">自家慢诩便便腹，开卷方知未读书。</p>
+  </div>
+  <div class="divider-horizontal"></div>
+  <div class="site-state">
+    <a class="site-state-item" href="/archives">
+      <span class="site-state-item-count">21</span>
+      <span class="site-state-item-name">归档</span>
+    </a>
+    <div class="divider-vertical"></div>
+    <a class="site-state-item" href="/categories">
+      <span class="site-state-item-count">5</span>
+      <span class="site-state-item-name">分类</span>
+    </a>
+    <div class="divider-vertical"></div>
+    <a class="site-state-item" href="/tags">
+      <span class="site-state-item-count">17</span>
+      <span class="site-state-item-name">标签</span>
+    </a>
+  </div>
+  <div class="divider-horizontal"></div>
+  <div class="friends">
+    <div>
+      <i class="icon-link"></i>&nbsp;友情链接
     </div>
-    <div class="divider-horizontal"></div>
-    <div class="friends">
-        <div>
-            <i class="icon-link"></i>&nbsp;友情链接
-        </div>
-        
-            <div class="no-friends">
-                <span class="icon-tongue"></span><br>
-                <span>朋友都没有，好像一条狗</span>
-            </div>
-        
-        <ul class="friends-list">
-            
-        </ul>
+    
+    <div class="no-friends">
+      <span class="icon-tongue"></span><br>
+      <span>朋友都没有，好像一条狗</span>
     </div>
+    
+    <ul class="friends-list">
+      
+    </ul>
+  </div>
 </div>
-
     </aside>
     <main class="content-inner">
-        <article id="post">
-    <div class="post-header">
+      <article id="post">
+  <div class="post-header">
+  
+  <h1 class="post-title" href="/2022/02/10/%E4%B8%89%E6%A0%8F%E8%87%AA%E9%80%82%E5%BA%94%E2%80%94%E2%80%94%E5%9C%A3%E6%9D%AF%E5%B8%83%E5%B1%80%E4%B8%8E%E5%8F%8C%E9%A3%9E%E7%BF%BC%E5%B8%83%E5%B1%80/">三栏自适应——圣杯布局与双飞翼布局</h1>
+  
+
+  <div class="post-meta">
+    <time class="post-date" datetime="2022-02-10T10:51:47.000Z">
+      <i class="icon-calendar"></i>&nbsp;2022-02-10
+    </time>
+
     
-        <h1 class="post-title" href="/2022/02/10/%E4%B8%89%E6%A0%8F%E8%87%AA%E9%80%82%E5%BA%94%E2%80%94%E2%80%94%E5%9C%A3%E6%9D%AF%E5%B8%83%E5%B1%80%E4%B8%8E%E5%8F%8C%E9%A3%9E%E7%BF%BC%E5%B8%83%E5%B1%80/">三栏自适应——圣杯布局与双飞翼布局</h1>
+    <span class="post-categories">
+      <i class="icon-folder">&nbsp;</i>
+      <a class="post-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+    </span>
     
 
-    <div class="post-meta">
-        <time class="post-date" datetime="2022-02-10T10:51:47.000Z">
-            <i class="icon-calendar"></i>&nbsp;2022-02-10
-        </time>
-
-        
-            <span class="post-categories">
-                        <i class="icon-folder">&nbsp;</i>
-                        <a class="post-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
-                    </span>
-        
-
-        
-            <span class="post-tags">
-                        <i class="icon-price-tags">&nbsp;</i>
-                        <a class="post-tag-link" href="/tags/CSS/" rel="tag">#CSS</a>
-                    </span>
-        
-    </div>
+    
+    <span class="post-tags">
+      <i class="icon-price-tags">&nbsp;</i>
+      <a class="post-tag-link" href="/tags/CSS/" rel="tag">#CSS</a>
+    </span>
+    
+  </div>
 </div>
-
-    
-
-    <p>圣杯布局和双飞翼布局均用于实现左右定宽，中间自适应的三栏布局，后者是前者的优化版。</p>
+  
+  <p>圣杯布局和双飞翼布局均用于实现左右定宽，中间自适应的三栏布局，后者是前者的优化版。</p>
 <p><img src="/assets/20220210-1-1-%E4%B8%89%E6%A0%8F%E8%87%AA%E9%80%82%E5%BA%94.png"></p>
 <span id="more"></span>
 
@@ -166,92 +165,91 @@
 <p>三栏自适应是比较常见的需求，圣杯布局和双飞翼布局则是比较经典的三栏自适应布局实现方法，属于除了“名字起得很好下次别起了”以外都很值得一学，学完就会发现，flex 真是前端之光。</p>
 <p><strong>为了让中间栏最早渲染，在编写 HTML 结构时要把中间栏放在边上两栏之前。</strong></p>
 </blockquote>
-<h1 id="圣杯布局"><a href="#圣杯布局" class="headerlink" title="圣杯布局"></a>圣杯布局</h1><h2 id="1-HTML-结构"><a href="#1-HTML-结构" class="headerlink" title="1. HTML 结构"></a>1. HTML 结构</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">header</span>&gt;</span>header<span class="hljs-tag">&lt;/<span class="hljs-name">header</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">main</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;center&quot;</span>&gt;</span>center<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;left&quot;</span>&gt;</span>left<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;right&quot;</span>&gt;</span>right<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">main</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">footer</span>&gt;</span>footer<span class="hljs-tag">&lt;/<span class="hljs-name">footer</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<h1 id="圣杯布局"><a href="#圣杯布局" class="headerlink" title="圣杯布局"></a>圣杯布局</h1><h2 id="1-HTML-结构"><a href="#1-HTML-结构" class="headerlink" title="1. HTML 结构"></a>1. HTML 结构</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">header</span>&gt;</span>header<span class="hljs-tag">&lt;/<span class="hljs-name">header</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">main</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;center&quot;</span>&gt;</span>center<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;left&quot;</span>&gt;</span>left<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;right&quot;</span>&gt;</span>right<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">main</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">footer</span>&gt;</span>footer<span class="hljs-tag">&lt;/<span class="hljs-name">footer</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <blockquote>
 <p>重点在于 <code>&lt;main&gt;</code> 中的内容， <code>&lt;header&gt;</code> 和 <code>footer</code> 没有也行，但是我瞅大家都整了所以这里也整了一下。</p>
 </blockquote>
 <h2 id="2-背景颜色（可选）"><a href="#2-背景颜色（可选）" class="headerlink" title="2. 背景颜色（可选）"></a>2. 背景颜色（可选）</h2><p>便于标识，全凭个人喜好。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">header</span>, <span class="hljs-selector-tag">footer</span> &#123;<br>	<span class="hljs-attribute">background-color</span>: yellowgreen;<br>&#125;<br><span class="hljs-selector-class">.center</span> &#123;<br>	<span class="hljs-attribute">background-color</span>: gainsboro;<br>&#125;<br><span class="hljs-selector-class">.left</span>, <span class="hljs-selector-class">.right</span> &#123;<br>	<span class="hljs-attribute">background-color</span>: lightcoral;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">header</span>,<br><span class="hljs-selector-tag">footer</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: yellowgreen;<br>&#125;<br><span class="hljs-selector-class">.center</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: gainsboro;<br>&#125;<br><span class="hljs-selector-class">.left</span>,<br><span class="hljs-selector-class">.right</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: lightcoral;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h2 id="3-浮动"><a href="#3-浮动" class="headerlink" title="3. 浮动"></a>3. 浮动</h2><p>让三栏都浮动起来，这样最后才能让三栏都在“一行”，继续往下看就晓得了。</p>
 <p>记得要清除浮动，方法有很多，根据实际情况选择。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">main</span> &#123;<br>    <span class="hljs-attribute">display</span>: flow-root;  <span class="hljs-comment">/* BFC 清除浮动 */</span><br>&#125;<br><span class="hljs-selector-class">.center</span>, <span class="hljs-selector-class">.left</span>, <span class="hljs-selector-class">.right</span> &#123;<br>    <span class="hljs-attribute">float</span>: left;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">main</span> &#123;<br>  <span class="hljs-attribute">display</span>: flow-root; <span class="hljs-comment">/* BFC 清除浮动 */</span><br>&#125;<br><span class="hljs-selector-class">.center</span>,<br><span class="hljs-selector-class">.left</span>,<br><span class="hljs-selector-class">.right</span> &#123;<br>  <span class="hljs-attribute">float</span>: left;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h2 id="4-设置宽度"><a href="#4-设置宽度" class="headerlink" title="4. 设置宽度"></a>4. 设置宽度</h2><ol>
 <li>要让中间栏能够自适应充满（<code>width: 100%;</code>）</li>
 <li>设置边栏为定宽</li>
 <li>中间栏充满后会把一整行都占满，把边栏挤下去，所以要把边栏再移回去（负 <code>margin</code>）</li>
 </ol>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.center</span> &#123;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;  <span class="hljs-comment">/* 充满容器使得宽度能够自适应，但同时会把边栏挤下去 */</span><br>&#125;<br><span class="hljs-selector-class">.left</span> &#123;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">40px</span>;<br>    <span class="hljs-attribute">margin-left</span>: -<span class="hljs-number">100%</span>;  <span class="hljs-comment">/* 移至与 center 左端对齐，此处 100% 相对父元素宽度而言 */</span><br>&#125;<br><span class="hljs-selector-class">.right</span> &#123;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">60px</span>;<br>    <span class="hljs-attribute">margin-left</span>: -<span class="hljs-number">60px</span>;  <span class="hljs-comment">/* 移至与 center 右端对齐 */</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.center</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>; <span class="hljs-comment">/* 充满容器使得宽度能够自适应，但同时会把边栏挤下去 */</span><br>&#125;<br><span class="hljs-selector-class">.left</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">40px</span>;<br>  <span class="hljs-attribute">margin-left</span>: -<span class="hljs-number">100%</span>; <span class="hljs-comment">/* 移至与 center 左端对齐，此处 100% 相对父元素宽度而言 */</span><br>&#125;<br><span class="hljs-selector-class">.right</span> &#123;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">60px</span>;<br>  <span class="hljs-attribute">margin-left</span>: -<span class="hljs-number">60px</span>; <span class="hljs-comment">/* 移至与 center 右端对齐 */</span><br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h2 id="5-为边栏腾空"><a href="#5-为边栏腾空" class="headerlink" title="5. 为边栏腾空"></a>5. 为边栏腾空</h2><p>此时虽然三栏已经按顺序放在了一行，但实际边栏是盖在中间栏上面的，为了避免中间栏被遮挡，就要把中间栏挤压一下，给边栏留出空白。从这开始就是圣杯布局和双飞翼布局的差别所在，圣杯布局的实现方法是给父元素加 <code>padding</code>，或者 <code>margin</code>。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">main</span> &#123;<br>    <span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span> <span class="hljs-number">60px</span> <span class="hljs-number">0</span> <span class="hljs-number">40px</span>;  <span class="hljs-comment">/* 使边栏不会把 center 盖住 */</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">main</span> &#123;<br>  <span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span> <span class="hljs-number">60px</span> <span class="hljs-number">0</span> <span class="hljs-number">40px</span>; <span class="hljs-comment">/* 使边栏不会把 center 盖住 */</span><br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>此时边栏还是被挤着，所以要把它们移出去，放在腾出来的空白上。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.left</span> &#123;<br>    <span class="hljs-attribute">position</span>: relative;<br>    <span class="hljs-attribute">left</span>: -<span class="hljs-number">40px</span>;  <span class="hljs-comment">/* 往左移回去 */</span><br>&#125;<br><span class="hljs-selector-class">.right</span> &#123;<br>    <span class="hljs-attribute">position</span>: relative;<br>    <span class="hljs-attribute">right</span>: -<span class="hljs-number">60px</span>;  <span class="hljs-comment">/* 往右移回去 */</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.left</span> &#123;<br>  <span class="hljs-attribute">position</span>: relative;<br>  <span class="hljs-attribute">left</span>: -<span class="hljs-number">40px</span>; <span class="hljs-comment">/* 往左移回去 */</span><br>&#125;<br><span class="hljs-selector-class">.right</span> &#123;<br>  <span class="hljs-attribute">position</span>: relative;<br>  <span class="hljs-attribute">right</span>: -<span class="hljs-number">60px</span>; <span class="hljs-comment">/* 往右移回去 */</span><br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>大功告成。</p>
 <iframe src="/assets/html/圣杯布局.html" height="62px" width="100%" scrolling="no" frameborder="0">
 </iframe>
 
 <h1 id="双飞翼布局"><a href="#双飞翼布局" class="headerlink" title="双飞翼布局"></a>双飞翼布局</h1><p>双飞翼布局跟圣杯布局的区别在最后腾空的方法上，双飞翼是直接给中间栏里的内容又套了个壳子：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">main</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;center&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;content&quot;</span>&gt;</span>center<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;left&quot;</span>&gt;</span>left<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;right&quot;</span>&gt;</span>right<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">main</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">main</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;center&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;content&quot;</span>&gt;</span>center<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;left&quot;</span>&gt;</span>left<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;right&quot;</span>&gt;</span>right<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">main</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p>然后给壳子加个 <code>margin</code>：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.center</span> <span class="hljs-selector-class">.content</span> &#123;<br>    <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span> <span class="hljs-number">60px</span> <span class="hljs-number">0</span> <span class="hljs-number">40px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.center</span> <span class="hljs-selector-class">.content</span> &#123;<br>  <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span> <span class="hljs-number">60px</span> <span class="hljs-number">0</span> <span class="hljs-number">40px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>这样就省得再把边栏移回去了。</p>
 <iframe src="/assets/html/双飞翼布局.html" height="62px" width="100%" scrolling="no" frameborder="0">
 </iframe>
 
-    
-        
-        
-        <div class="post-nav">
-            <div class="post-nav-item">
-                
-                    <a href="/2022/03/14/JavaScript%E5%B8%83%E5%B0%94%E6%93%8D%E4%BD%9C%E7%AC%A6%E7%9A%84%E7%9F%AD%E8%B7%AF%E7%89%B9%E6%80%A7/" rel="prev" title="JavaScript 布尔操作符的短路特性">
-                        <i class="icon-arrow_back_ios"></i>&nbsp;JavaScript 布尔操作符的短路特性
-                    </a>
-                
-            </div>
-            <div class="post-nav-item">
-                
-                    <a href="/2022/02/09/%E5%A4%8D%E6%9D%82%E9%93%BE%E8%A1%A8%E7%9A%84%E5%A4%8D%E5%88%B6/" rel="next" title="复杂链表的复制">
-                        复杂链表的复制&nbsp;<i class="icon-arrow_forward_ios"></i>
-                    </a>
-                
-            </div>
-        </div>
-    
-</article>
-
-    </main>
-</div>
-
-<footer class="footer-outer">
-    <div class="footer-inner">
-        <div class="copyright">
-            Copyright © 2021~2022 <a target="_blank" rel="noopener" href="https://github.com/SummerDiver"><i
-                        class="icon-pacmanr"></i>Summer Diver<i class="icon-pacmanl"></i></a> <br>
-            Powered by <a target="_blank" rel="noopener" href="http://hexo.io">Hexo<i class="icon-new-tab"></i></a>
-            <br>
-        </div>
+  
+  
+  
+  <div class="post-nav">
+    <div class="post-nav-item">
+      
+      <a href="/2022/03/14/JavaScript%E5%B8%83%E5%B0%94%E6%93%8D%E4%BD%9C%E7%AC%A6%E7%9A%84%E7%9F%AD%E8%B7%AF%E7%89%B9%E6%80%A7/" rel="prev" title="JavaScript 布尔操作符的短路特性">
+        <i class="icon-arrow_back_ios"></i>&nbsp;JavaScript 布尔操作符的短路特性
+      </a>
+      
     </div>
-</footer>
+    <div class="post-nav-item">
+      
+      <a href="/2022/02/09/%E5%A4%8D%E6%9D%82%E9%93%BE%E8%A1%A8%E7%9A%84%E5%A4%8D%E5%88%B6/" rel="next" title="复杂链表的复制">
+        复杂链表的复制&nbsp;<i class="icon-arrow_forward_ios"></i>
+      </a>
+      
+    </div>
+  </div>
+  
+</article>
+    </main>
+  </div>
 
+  <footer class="footer-outer">
+    <div class="footer-inner">
+      <div class="copyright">
+        Copyright © 2021~2024 <a target="_blank" rel="noopener" href="https://github.com/SummerDiver"><i class="icon-pacmanr"></i>&nbsp;暑熊&nbsp;<i class="icon-pacmanl"></i></a> <br>
+        Powered by <a target="_blank" rel="noopener" href="http://hexo.io">Hexo<i class="icon-new-tab"></i></a>
+        <br>
+      </div>
+    </div>
+  </footer>
 
-    <!-- scripts list from theme config.yml -->
-    
-        <script src="/js/jquery-3.6.0.min.js"></script>
-    
-        <script src="/js/chippy.js"></script>
-    
-        <script src="/js/menubar.js"></script>
-    
-        <script src="/js/toc.js"></script>
-    
-
+  
+  <!-- scripts list from theme config.yml -->
+  
+  <script src="/js/jquery-3.6.0.min.js"></script>
+  
+  <script src="/js/chippy.js"></script>
+  
+  <script src="/js/menubar.js"></script>
+  
+  <script src="/js/toc.js"></script>
+  
+  
 </body>
+
 </html>

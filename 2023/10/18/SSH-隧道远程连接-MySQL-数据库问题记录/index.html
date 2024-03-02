@@ -1,0 +1,231 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>SSH 隧道远程连接 MySQL 数据库问题记录 - 鼠熊部落格</title>
+  
+  <!-- stylesheets list from _config.yml -->
+  
+  <link rel="stylesheet" href="/css/chippy.css">
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <nav class="menu-outer">
+    <div class="menu-inner">
+      
+      <a class="menu-inner-item" href="/">
+        <span class="menu-inner-item-icon"></span>
+        <span class="menu-inner-item-text">首页</span>
+      </a>
+      
+      <a class="menu-inner-item" href="/about">
+        <span class="menu-inner-item-icon"></span>
+        <span class="menu-inner-item-text">关于我</span>
+      </a>
+      
+      <a class="menu-inner-item" href="/archives">
+        <span class="menu-inner-item-icon"></span>
+        <span class="menu-inner-item-text">归档</span>
+      </a>
+      
+    </div>
+  </nav>
+
+  <header class="header-outer">
+    <div class="header-inner">
+      <div class="header-info">
+        
+        <h1 class="header-info-title">
+          Chipmunk &amp; Panda
+        </h1>
+        
+        
+        <h3 class="header-info-subtitle">
+          -- 鼠熊部落格
+        </h3>
+        
+        
+        <p class="header-info-motto">
+          All work and no play makes Jack a dull boy.
+        </p>
+        
+        <div class="header-info-contact">
+          <a target="_blank" rel="noopener" href="https://github.com/SummerDiver" class="header-info-contact-icon">
+            <i class="icon-github"></i>
+          </a>
+          <a target="_blank" rel="noopener" href="https://weibo.com/u/7390819624" class="header-info-contact-icon">
+            <i class="icon-sina-weibo"></i>
+          </a>
+          <a href="mailto:summerdiver@yeah.net" class="header-info-contact-icon">
+            <i class="icon-mail4"></i>
+          </a>
+          <a href="" class="header-info-contact-icon" onclick="return false">
+            <i class="icon-IE"></i>
+          </a>
+        </div>
+      </div>
+      <a href="#content" class="header-arrow">
+        <i class="icon-forward2"></i>
+      </a>
+    </div>
+  </header>
+
+  <div id="content" class="content-outer clearfix">
+    <aside id="content-aside" class="content-aside">
+      
+
+<div class="aside-card aside-toc">
+  <h3>文章目录</h3>
+  <div class="toc-content">
+    <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0"><span class="post-toc-number">1.</span> <span class="post-toc-text">问题描述</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3"><span class="post-toc-number">2.</span> <span class="post-toc-text">问题解决</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%BC%80%E5%90%AF-SSH-%E8%BD%AC%E5%8F%91"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">开启 SSH 转发</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E9%99%84%E5%B1%9E%E9%97%AE%E9%A2%98%EF%BC%9A%E4%BF%AE%E6%94%B9-sshd-config-%E6%97%B6%E6%8F%90%E7%A4%BA%E5%8F%AA%E8%AF%BB"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">附属问题：修改 sshd_config 时提示只读</span></a></li></ol></li></ol>
+  </div>
+</div>
+
+
+<div class="aside-card aside-ov">
+  <div class="author">
+    <div class="author-avatar">
+      <img src="/images/avatar.jpg">
+    </div>
+    <h4 class="author-name">暑熊</h4>
+    <p class="author-motto">自家慢诩便便腹，开卷方知未读书。</p>
+  </div>
+  <div class="divider-horizontal"></div>
+  <div class="site-state">
+    <a class="site-state-item" href="/archives">
+      <span class="site-state-item-count">21</span>
+      <span class="site-state-item-name">归档</span>
+    </a>
+    <div class="divider-vertical"></div>
+    <a class="site-state-item" href="/categories">
+      <span class="site-state-item-count">5</span>
+      <span class="site-state-item-name">分类</span>
+    </a>
+    <div class="divider-vertical"></div>
+    <a class="site-state-item" href="/tags">
+      <span class="site-state-item-count">17</span>
+      <span class="site-state-item-name">标签</span>
+    </a>
+  </div>
+  <div class="divider-horizontal"></div>
+  <div class="friends">
+    <div>
+      <i class="icon-link"></i>&nbsp;友情链接
+    </div>
+    
+    <div class="no-friends">
+      <span class="icon-tongue"></span><br>
+      <span>朋友都没有，好像一条狗</span>
+    </div>
+    
+    <ul class="friends-list">
+      
+    </ul>
+  </div>
+</div>
+    </aside>
+    <main class="content-inner">
+      <article id="post">
+  <div class="post-header">
+  
+  <h1 class="post-title" href="/2023/10/18/SSH-%E9%9A%A7%E9%81%93%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5-MySQL-%E6%95%B0%E6%8D%AE%E5%BA%93%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/">SSH 隧道远程连接 MySQL 数据库问题记录</h1>
+  
+
+  <div class="post-meta">
+    <time class="post-date" datetime="2023-10-18T04:09:43.000Z">
+      <i class="icon-calendar"></i>&nbsp;2023-10-18
+    </time>
+
+    
+    <span class="post-categories">
+      <i class="icon-folder">&nbsp;</i>
+      <a class="post-category-link" href="/categories/%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/">问题记录</a>
+    </span>
+    
+
+    
+    <span class="post-tags">
+      <i class="icon-price-tags">&nbsp;</i>
+      <a class="post-tag-link" href="/tags/Linux/" rel="tag">#Linux</a>&nbsp;<a class="post-tag-link" href="/tags/MySQL/" rel="tag">#MySQL</a>
+    </span>
+    
+  </div>
+</div>
+  
+  <h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>使用 Navicat 通过 SSH 隧道远程连接在 Ubuntu 服务器上的 MySQL 数据库时，报错内容类似如下。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">Lost connection to MySQL server at <span class="hljs-string">&#x27; handshake：reading initial communication packet&#x27;</span>，system error: 0<br></code></pre></td></tr></table></figure>
+
+<p>直接使用服务器访问本机 MySQL 没问题，但是使用 Navicat 通过 SSH 隧道连接时，就会超时。</p>
+<h1 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h1><h2 id="开启-SSH-转发"><a href="#开启-SSH-转发" class="headerlink" title="开启 SSH 转发"></a>开启 SSH 转发</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/be6bf42ae55a">sqlyog ssh 方式连接 mysql 报错’reading initial communication packet’</a> &gt; <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_41750082/article/details/112505370">SSHD 远程端口转发的配置经验小结</a></p>
+</blockquote>
+<p>修改配置文件 &#x2F;etc&#x2F;ssh&#x2F;sshd_config 中配置项 <code>AllowTcpForwarding</code> 的值为 <code>yes</code>即可。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">service sshd restart<br>systemctl restart sshd.service<br></code></pre></td></tr></table></figure>
+
+<p>修改后可能需要重启 ssh 服务才会生效，或者干脆直接重启服务器。</p>
+<h2 id="附属问题：修改-sshd-config-时提示只读"><a href="#附属问题：修改-sshd-config-时提示只读" class="headerlink" title="附属问题：修改 sshd_config 时提示只读"></a>附属问题：修改 sshd_config 时提示只读</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43708622/article/details/108013630">linux-root 都不能修改文件权限</a></p>
+</blockquote>
+<ul>
+<li>用户为 root 用户：排除没有权限的可能性。</li>
+<li>ll 查看文件权限：排除文件权限设置错误问题。</li>
+<li>无法修改、删除 sshd_config 文件，但同时可以在目录下新建、删除文件：排除文件系统挂载为只读的可能性。</li>
+<li>使用 <code>chomod</code> 无法修改文件权限：很可能 <code>chattr</code> 指令相关。</li>
+</ul>
+<p>使用 <code>lsattr</code> 查看文件属性，发现文件被设置了 <code>i</code> 属性，即不可修改。使用 <code>chattr</code> 去除 <code>i</code> 属性后便可以正常编辑。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ lsattr /etc/ssh/sshd_config<br>----i---------e-- /etc/ssh/sshd_confi<br><br>$ chattr -i /etc/ssh/sshd_config<br></code></pre></td></tr></table></figure>
+
+  
+  
+  
+  <div class="post-nav">
+    <div class="post-nav-item">
+      
+      <a href="/2023/11/16/Windows%E4%B8%8B%E7%AB%AF%E5%8F%A3%E4%B8%8D%E5%8F%AF%E7%94%A8%E7%9A%84%E5%8F%AF%E8%83%BD%E6%83%85%E5%86%B5%E8%A7%A3%E5%86%B3/" rel="prev" title="Windows 下端口不可用的可能情况解决">
+        <i class="icon-arrow_back_ios"></i>&nbsp;Windows 下端口不可用的可能情况解决
+      </a>
+      
+    </div>
+    <div class="post-nav-item">
+      
+      <a href="/2023/03/15/litetrace%E2%80%94%E2%80%94%E4%B8%80%E4%B8%AA%E7%AE%80%E6%98%93%E7%89%88%E7%9A%84trace-cmd%E5%B7%A5%E5%85%B7%E5%AE%9E%E7%8E%B0/" rel="next" title="litetrace —— 一个简易版的 trace-cmd 工具实现">
+        litetrace —— 一个简易版的 trace-cmd 工具实现&nbsp;<i class="icon-arrow_forward_ios"></i>
+      </a>
+      
+    </div>
+  </div>
+  
+</article>
+    </main>
+  </div>
+
+  <footer class="footer-outer">
+    <div class="footer-inner">
+      <div class="copyright">
+        Copyright © 2021~2024 <a target="_blank" rel="noopener" href="https://github.com/SummerDiver"><i class="icon-pacmanr"></i>&nbsp;暑熊&nbsp;<i class="icon-pacmanl"></i></a> <br>
+        Powered by <a target="_blank" rel="noopener" href="http://hexo.io">Hexo<i class="icon-new-tab"></i></a>
+        <br>
+      </div>
+    </div>
+  </footer>
+
+  
+  <!-- scripts list from theme config.yml -->
+  
+  <script src="/js/jquery-3.6.0.min.js"></script>
+  
+  <script src="/js/chippy.js"></script>
+  
+  <script src="/js/menubar.js"></script>
+  
+  <script src="/js/toc.js"></script>
+  
+  
+</body>
+
+</html>

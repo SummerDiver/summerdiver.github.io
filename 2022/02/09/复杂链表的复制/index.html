@@ -2,163 +2,162 @@
 
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
-    <meta charset="UTF-8">
-    <title>复杂链表的复制 - 鼠熊部落格</title>
-    
-        <!-- stylesheets list from _config.yml -->
-        
-            <link rel="stylesheet" href="/css/chippy.css">
-        
-    
-<meta name="generator" content="Hexo 6.2.0"></head>
+  <meta charset="UTF-8">
+  <title>复杂链表的复制 - 鼠熊部落格</title>
+  
+  <!-- stylesheets list from _config.yml -->
+  
+  <link rel="stylesheet" href="/css/chippy.css">
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
 <body>
-<nav class="menu-outer">
+  <nav class="menu-outer">
     <div class="menu-inner">
-        
-            <a class="menu-inner-item" href="/">
-                <span class="menu-inner-item-icon"></span>
-                <span class="menu-inner-item-text">首页</span>
-            </a>
-        
-            <a class="menu-inner-item" href="/about">
-                <span class="menu-inner-item-icon"></span>
-                <span class="menu-inner-item-text">关于我</span>
-            </a>
-        
-            <a class="menu-inner-item" href="/archives">
-                <span class="menu-inner-item-icon"></span>
-                <span class="menu-inner-item-text">归档</span>
-            </a>
-        
+      
+      <a class="menu-inner-item" href="/">
+        <span class="menu-inner-item-icon"></span>
+        <span class="menu-inner-item-text">首页</span>
+      </a>
+      
+      <a class="menu-inner-item" href="/about">
+        <span class="menu-inner-item-icon"></span>
+        <span class="menu-inner-item-text">关于我</span>
+      </a>
+      
+      <a class="menu-inner-item" href="/archives">
+        <span class="menu-inner-item-icon"></span>
+        <span class="menu-inner-item-text">归档</span>
+      </a>
+      
     </div>
-</nav>
+  </nav>
 
-<header class="header-outer">
+  <header class="header-outer">
     <div class="header-inner">
-        <div class="header-info">
-            
-                <h1 class="header-info-title">
-                    Chipmunk &amp; Panda
-                </h1>
-            
-            
-                <h3 class="header-info-subtitle">
-                    -- 鼠熊部落格
-                </h3>
-            
-            
-                <p class="header-info-motto">
-                    All work and no play makes Jack a dull boy.
-                </p>
-            
-            <div class="header-info-contact">
-                <a target="_blank" rel="noopener" href="https://github.com/SummerDiver" class="header-info-contact-icon">
-                    <i class="icon-github"></i>
-                </a>
-                <a target="_blank" rel="noopener" href="https://weibo.com/u/7390819624" class="header-info-contact-icon">
-                    <i class="icon-sina-weibo"></i>
-                </a>
-                <a href="mailto:summerdiver@yeah.net" class="header-info-contact-icon">
-                    <i class="icon-mail4"></i>
-                </a>
-                <a href="" class="header-info-contact-icon" onclick="return false">
-                    <i class="icon-IE"></i>
-                </a>
-            </div>
-        </div>
-        <a href="#content" class="header-arrow">
-            <i class="icon-forward2"></i>
-        </a>
-    </div>
-</header>
-
-<div id="content" class="content-outer clearfix">
-    <aside id="content-aside" class="content-aside">
+      <div class="header-info">
         
-
-    <div class="aside-card aside-toc">
-        <h3>文章目录</h3>
-        <div class="toc-content">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E5%88%9D%E8%A7%81"><span class="post-toc-number">1.</span> <span class="post-toc-text">初见</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E9%93%BE%E8%A1%A8%E6%8B%86%E5%88%86%E6%B3%95"><span class="post-toc-number">2.</span> <span class="post-toc-text">链表拆分法</span></a></li></ol>
+        <h1 class="header-info-title">
+          Chipmunk &amp; Panda
+        </h1>
+        
+        
+        <h3 class="header-info-subtitle">
+          -- 鼠熊部落格
+        </h3>
+        
+        
+        <p class="header-info-motto">
+          All work and no play makes Jack a dull boy.
+        </p>
+        
+        <div class="header-info-contact">
+          <a target="_blank" rel="noopener" href="https://github.com/SummerDiver" class="header-info-contact-icon">
+            <i class="icon-github"></i>
+          </a>
+          <a target="_blank" rel="noopener" href="https://weibo.com/u/7390819624" class="header-info-contact-icon">
+            <i class="icon-sina-weibo"></i>
+          </a>
+          <a href="mailto:summerdiver@yeah.net" class="header-info-contact-icon">
+            <i class="icon-mail4"></i>
+          </a>
+          <a href="" class="header-info-contact-icon" onclick="return false">
+            <i class="icon-IE"></i>
+          </a>
         </div>
+      </div>
+      <a href="#content" class="header-arrow">
+        <i class="icon-forward2"></i>
+      </a>
     </div>
+  </header>
+
+  <div id="content" class="content-outer clearfix">
+    <aside id="content-aside" class="content-aside">
+      
+
+<div class="aside-card aside-toc">
+  <h3>文章目录</h3>
+  <div class="toc-content">
+    <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E5%88%9D%E8%A7%81"><span class="post-toc-number">1.</span> <span class="post-toc-text">初见</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E9%93%BE%E8%A1%A8%E6%8B%86%E5%88%86%E6%B3%95"><span class="post-toc-number">2.</span> <span class="post-toc-text">链表拆分法</span></a></li></ol>
+  </div>
+</div>
 
 
 <div class="aside-card aside-ov">
-    <div class="author">
-        <div class="author-avatar">
-            <img src="/images/avatar.jpg">
-        </div>
-        <h4 class="author-name">Summer Diver</h4>
-        <p class="author-motto">自家慢诩便便腹，开卷方知未读书。</p>
+  <div class="author">
+    <div class="author-avatar">
+      <img src="/images/avatar.jpg">
     </div>
-    <div class="divider-horizontal"></div>
-    <div class="site-state">
-        <a class="site-state-item" href="/archives">
-            <span class="site-state-item-count">17</span>
-            <span class="site-state-item-name">归档</span>
-        </a>
-        <div class="divider-vertical"></div>
-        <a class="site-state-item" href="/categories">
-            <span class="site-state-item-count">4</span>
-            <span class="site-state-item-name">分类</span>
-        </a>
-        <div class="divider-vertical"></div>
-        <a class="site-state-item" href="/tags">
-            <span class="site-state-item-count">10</span>
-            <span class="site-state-item-name">标签</span>
-        </a>
+    <h4 class="author-name">暑熊</h4>
+    <p class="author-motto">自家慢诩便便腹，开卷方知未读书。</p>
+  </div>
+  <div class="divider-horizontal"></div>
+  <div class="site-state">
+    <a class="site-state-item" href="/archives">
+      <span class="site-state-item-count">21</span>
+      <span class="site-state-item-name">归档</span>
+    </a>
+    <div class="divider-vertical"></div>
+    <a class="site-state-item" href="/categories">
+      <span class="site-state-item-count">5</span>
+      <span class="site-state-item-name">分类</span>
+    </a>
+    <div class="divider-vertical"></div>
+    <a class="site-state-item" href="/tags">
+      <span class="site-state-item-count">17</span>
+      <span class="site-state-item-name">标签</span>
+    </a>
+  </div>
+  <div class="divider-horizontal"></div>
+  <div class="friends">
+    <div>
+      <i class="icon-link"></i>&nbsp;友情链接
     </div>
-    <div class="divider-horizontal"></div>
-    <div class="friends">
-        <div>
-            <i class="icon-link"></i>&nbsp;友情链接
-        </div>
-        
-            <div class="no-friends">
-                <span class="icon-tongue"></span><br>
-                <span>朋友都没有，好像一条狗</span>
-            </div>
-        
-        <ul class="friends-list">
-            
-        </ul>
+    
+    <div class="no-friends">
+      <span class="icon-tongue"></span><br>
+      <span>朋友都没有，好像一条狗</span>
     </div>
+    
+    <ul class="friends-list">
+      
+    </ul>
+  </div>
 </div>
-
     </aside>
     <main class="content-inner">
-        <article id="post">
-    <div class="post-header">
+      <article id="post">
+  <div class="post-header">
+  
+  <h1 class="post-title" href="/2022/02/09/%E5%A4%8D%E6%9D%82%E9%93%BE%E8%A1%A8%E7%9A%84%E5%A4%8D%E5%88%B6/">复杂链表的复制</h1>
+  
+
+  <div class="post-meta">
+    <time class="post-date" datetime="2022-02-09T01:51:39.000Z">
+      <i class="icon-calendar"></i>&nbsp;2022-02-09
+    </time>
+
     
-        <h1 class="post-title" href="/2022/02/09/%E5%A4%8D%E6%9D%82%E9%93%BE%E8%A1%A8%E7%9A%84%E5%A4%8D%E5%88%B6/">复杂链表的复制</h1>
+    <span class="post-categories">
+      <i class="icon-folder">&nbsp;</i>
+      <a class="post-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
+    </span>
     
 
-    <div class="post-meta">
-        <time class="post-date" datetime="2022-02-09T01:51:39.000Z">
-            <i class="icon-calendar"></i>&nbsp;2022-02-09
-        </time>
-
-        
-            <span class="post-categories">
-                        <i class="icon-folder">&nbsp;</i>
-                        <a class="post-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
-                    </span>
-        
-
-        
-            <span class="post-tags">
-                        <i class="icon-price-tags">&nbsp;</i>
-                        <a class="post-tag-link" href="/tags/JavaScript/" rel="tag">#JavaScript</a>&nbsp;<a class="post-tag-link" href="/tags/%E9%93%BE%E8%A1%A8/" rel="tag">#链表</a>
-                    </span>
-        
-    </div>
+    
+    <span class="post-tags">
+      <i class="icon-price-tags">&nbsp;</i>
+      <a class="post-tag-link" href="/tags/JavaScript/" rel="tag">#JavaScript</a>&nbsp;<a class="post-tag-link" href="/tags/%E9%93%BE%E8%A1%A8/" rel="tag">#链表</a>
+    </span>
+    
+  </div>
 </div>
-
-    
-
-    <p>请实现 copyRandomList 函数，复制一个复杂链表。在复杂链表中，每个节点除了有一个 next 指针指向下一个节点，还有一个 random 指针指向链表中的任意节点或者 null。</p>
+  
+  <p>请实现 copyRandomList 函数，复制一个复杂链表。在复杂链表中，每个节点除了有一个 next 指针指向下一个节点，还有一个 random 指针指向链表中的任意节点或者 null。</p>
 <p>来源：力扣（LeetCode）<br>链接：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/fu-za-lian-biao-de-fu-zhi-lcof">https://leetcode-cn.com/problems/fu-za-lian-biao-de-fu-zhi-lcof</a></p>
 <span id="more"></span>
 
@@ -168,13 +167,13 @@
 <li>对该节点的 next 节点重复上述操作，然后把复制的 next 链接上；</li>
 <li>对该节点的 random 节点重复上述操作，然后把复制的 random 链接上。</li>
 </ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/*</span><br><span class="hljs-comment">function Node(val, next, random) &#123;</span><br><span class="hljs-comment">    this.val = val;</span><br><span class="hljs-comment">    this.next = next;</span><br><span class="hljs-comment">    this.random = random;</span><br><span class="hljs-comment">&#125;;</span><br><span class="hljs-comment">*/</span><br><br><span class="hljs-keyword">var</span> copyRandomList = <span class="hljs-keyword">function</span> (<span class="hljs-params">head</span>) &#123;<br>    <span class="hljs-keyword">if</span> (!head) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span><br>    &#125;<br><br>    <span class="hljs-keyword">let</span> node = head<br>    <span class="hljs-keyword">let</span> nodeVisitList = []<br>    <span class="hljs-keyword">let</span> nodeCpyList = []<br>    <span class="hljs-keyword">let</span> nodeCpy = <span class="hljs-literal">null</span><br>    <span class="hljs-keyword">let</span> nodeNextCpy = <span class="hljs-literal">null</span><br>    <span class="hljs-keyword">let</span> nodeRandomCpy = <span class="hljs-literal">null</span><br>    <span class="hljs-keyword">let</span> index = <span class="hljs-literal">null</span><br><br>    <span class="hljs-keyword">while</span> (node) &#123;<br>        index = nodeVisitList.<span class="hljs-title function_">indexOf</span>(node)<br>        <span class="hljs-keyword">if</span> (index &gt;= <span class="hljs-number">0</span>) &#123;<br>            nodeCpy = nodeCpyList[index]<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            nodeCpy = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Node</span>(node.<span class="hljs-property">val</span>, <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>)<br>            nodeVisitList.<span class="hljs-title function_">push</span>(node)<br>            nodeCpyList.<span class="hljs-title function_">push</span>(nodeCpy)<br>        &#125;<br><br>        <span class="hljs-keyword">if</span> (node.<span class="hljs-property">next</span>) &#123;<br>            index = nodeVisitList.<span class="hljs-title function_">indexOf</span>(node.<span class="hljs-property">next</span>)<br>            <span class="hljs-keyword">if</span> (index &gt;= <span class="hljs-number">0</span>) &#123;<br>                nodeNextCpy = nodeCpyList[index]<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                nodeNextCpy = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Node</span>(node.<span class="hljs-property">next</span>.<span class="hljs-property">val</span>, <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>)<br>                nodeVisitList.<span class="hljs-title function_">push</span>(node.<span class="hljs-property">next</span>)<br>                nodeCpyList.<span class="hljs-title function_">push</span>(nodeNextCpy)<br>            &#125;<br>            nodeCpy.<span class="hljs-property">next</span> = nodeNextCpy<br>        &#125;<br><br>        <span class="hljs-keyword">if</span> (node.<span class="hljs-property">random</span>) &#123;<br>            index = nodeVisitList.<span class="hljs-title function_">indexOf</span>(node.<span class="hljs-property">random</span>)<br>            <span class="hljs-keyword">if</span> (index &gt;= <span class="hljs-number">0</span>) &#123;<br>                nodeRandomCpy = nodeCpyList[index]<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                nodeRandomCpy = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Node</span>(node.<span class="hljs-property">random</span>.<span class="hljs-property">val</span>, <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>)<br>                nodeVisitList.<span class="hljs-title function_">push</span>(node.<span class="hljs-property">random</span>)<br>                nodeCpyList.<span class="hljs-title function_">push</span>(nodeRandomCpy)<br>            &#125;<br>            nodeCpy.<span class="hljs-property">random</span> = nodeRandomCpy<br>        &#125;<br><br>        node = node.<span class="hljs-property">next</span><br>    &#125;<br><br>    <span class="hljs-keyword">return</span> nodeCpyList[<span class="hljs-number">0</span>]<br>&#125;;<br></code></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/*</span><br><span class="hljs-comment">function Node(val, next, random) &#123;</span><br><span class="hljs-comment">    this.val = val;</span><br><span class="hljs-comment">    this.next = next;</span><br><span class="hljs-comment">    this.random = random;</span><br><span class="hljs-comment">&#125;;</span><br><span class="hljs-comment">*/</span><br><br><span class="hljs-keyword">var</span> copyRandomList = <span class="hljs-keyword">function</span> (<span class="hljs-params">head</span>) &#123;<br>  <span class="hljs-keyword">if</span> (!head) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span><br>  &#125;<br><br>  <span class="hljs-keyword">let</span> node = head<br>  <span class="hljs-keyword">let</span> nodeVisitList = []<br>  <span class="hljs-keyword">let</span> nodeCpyList = []<br>  <span class="hljs-keyword">let</span> nodeCpy = <span class="hljs-literal">null</span><br>  <span class="hljs-keyword">let</span> nodeNextCpy = <span class="hljs-literal">null</span><br>  <span class="hljs-keyword">let</span> nodeRandomCpy = <span class="hljs-literal">null</span><br>  <span class="hljs-keyword">let</span> index = <span class="hljs-literal">null</span><br><br>  <span class="hljs-keyword">while</span> (node) &#123;<br>    index = nodeVisitList.<span class="hljs-title function_">indexOf</span>(node)<br>    <span class="hljs-keyword">if</span> (index &gt;= <span class="hljs-number">0</span>) &#123;<br>      nodeCpy = nodeCpyList[index]<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>      nodeCpy = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Node</span>(node.<span class="hljs-property">val</span>, <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>)<br>      nodeVisitList.<span class="hljs-title function_">push</span>(node)<br>      nodeCpyList.<span class="hljs-title function_">push</span>(nodeCpy)<br>    &#125;<br><br>    <span class="hljs-keyword">if</span> (node.<span class="hljs-property">next</span>) &#123;<br>      index = nodeVisitList.<span class="hljs-title function_">indexOf</span>(node.<span class="hljs-property">next</span>)<br>      <span class="hljs-keyword">if</span> (index &gt;= <span class="hljs-number">0</span>) &#123;<br>        nodeNextCpy = nodeCpyList[index]<br>      &#125; <span class="hljs-keyword">else</span> &#123;<br>        nodeNextCpy = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Node</span>(node.<span class="hljs-property">next</span>.<span class="hljs-property">val</span>, <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>)<br>        nodeVisitList.<span class="hljs-title function_">push</span>(node.<span class="hljs-property">next</span>)<br>        nodeCpyList.<span class="hljs-title function_">push</span>(nodeNextCpy)<br>      &#125;<br>      nodeCpy.<span class="hljs-property">next</span> = nodeNextCpy<br>    &#125;<br><br>    <span class="hljs-keyword">if</span> (node.<span class="hljs-property">random</span>) &#123;<br>      index = nodeVisitList.<span class="hljs-title function_">indexOf</span>(node.<span class="hljs-property">random</span>)<br>      <span class="hljs-keyword">if</span> (index &gt;= <span class="hljs-number">0</span>) &#123;<br>        nodeRandomCpy = nodeCpyList[index]<br>      &#125; <span class="hljs-keyword">else</span> &#123;<br>        nodeRandomCpy = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Node</span>(node.<span class="hljs-property">random</span>.<span class="hljs-property">val</span>, <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>)<br>        nodeVisitList.<span class="hljs-title function_">push</span>(node.<span class="hljs-property">random</span>)<br>        nodeCpyList.<span class="hljs-title function_">push</span>(nodeRandomCpy)<br>      &#125;<br>      nodeCpy.<span class="hljs-property">random</span> = nodeRandomCpy<br>    &#125;<br><br>    node = node.<span class="hljs-property">next</span><br>  &#125;<br><br>  <span class="hljs-keyword">return</span> nodeCpyList[<span class="hljs-number">0</span>]<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <blockquote>
 <p>JS 的 Map 类型可以接受 Object 作为 key，所以也可以把两个数组合并成一个 Map，不过除了代码简洁一些其他没啥区别。</p>
 </blockquote>
 <p>改成递归要简洁很多：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> copyRandomList = <span class="hljs-keyword">function</span> (<span class="hljs-params">head, nodeVisitList = [], nodeCpyList = []</span>) &#123;<br>    <span class="hljs-keyword">if</span> (!head) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span><br>    &#125;<br><br>    <span class="hljs-keyword">let</span> index = nodeVisitList.<span class="hljs-title function_">indexOf</span>(head)<br>    <span class="hljs-keyword">if</span> (index &gt;= <span class="hljs-number">0</span>) &#123;<br>        <span class="hljs-keyword">return</span> nodeCpyList[index]<br>    &#125;<br><br>    <span class="hljs-keyword">let</span> nodeCpy = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Node</span>(head.<span class="hljs-property">val</span>, <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>)<br>    nodeVisitList.<span class="hljs-title function_">push</span>(head)<br>    nodeCpyList.<span class="hljs-title function_">push</span>(nodeCpy)<br>    nodeCpy.<span class="hljs-property">next</span> = <span class="hljs-title function_">copyRandomList</span>(head.<span class="hljs-property">next</span>, nodeVisitList, nodeCpyList)<br>    nodeCpy.<span class="hljs-property">random</span> = <span class="hljs-title function_">copyRandomList</span>(head.<span class="hljs-property">random</span>, nodeVisitList, nodeCpyList)<br><br>    <span class="hljs-keyword">return</span> nodeCpy<br>&#125;;<br></code></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> copyRandomList = <span class="hljs-keyword">function</span> (<span class="hljs-params">head, nodeVisitList = [], nodeCpyList = []</span>) &#123;<br>  <span class="hljs-keyword">if</span> (!head) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span><br>  &#125;<br><br>  <span class="hljs-keyword">let</span> index = nodeVisitList.<span class="hljs-title function_">indexOf</span>(head)<br>  <span class="hljs-keyword">if</span> (index &gt;= <span class="hljs-number">0</span>) &#123;<br>    <span class="hljs-keyword">return</span> nodeCpyList[index]<br>  &#125;<br><br>  <span class="hljs-keyword">let</span> nodeCpy = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Node</span>(head.<span class="hljs-property">val</span>, <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>)<br>  nodeVisitList.<span class="hljs-title function_">push</span>(head)<br>  nodeCpyList.<span class="hljs-title function_">push</span>(nodeCpy)<br>  nodeCpy.<span class="hljs-property">next</span> = <span class="hljs-title function_">copyRandomList</span>(head.<span class="hljs-property">next</span>, nodeVisitList, nodeCpyList)<br>  nodeCpy.<span class="hljs-property">random</span> = <span class="hljs-title function_">copyRandomList</span>(head.<span class="hljs-property">random</span>, nodeVisitList, nodeCpyList)<br><br>  <span class="hljs-keyword">return</span> nodeCpy<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h1 id="链表拆分法"><a href="#链表拆分法" class="headerlink" title="链表拆分法"></a>链表拆分法</h1><ol>
 <li>遍历链表，制作每个节点的拷贝（next、random 暂时不管），每个拷贝插入到对应原始节点后面（例如 A -&gt; B -&gt; C 变为 A -&gt; A’ -&gt; B -&gt; B’ -&gt; C -&gt; C’）</li>
@@ -182,58 +181,54 @@
 <li>遍历每一个原始节点，把 next 链接上（<code>node.next.next = node.next.next.next</code>），同时把原始链表的 next 复原。</li>
 </ol>
 <p>这样就不用记录已复制过的节点，节省了空间，比较巧妙。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> copyRandomList = <span class="hljs-keyword">function</span> (<span class="hljs-params">head</span>) &#123;<br>    <span class="hljs-keyword">if</span> (!head) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span><br>    &#125;<br><br>    <span class="hljs-keyword">let</span> node = head<br><br>    <span class="hljs-keyword">while</span> (node) &#123;<br>        node.<span class="hljs-property">next</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Node</span>(node.<span class="hljs-property">val</span>, node.<span class="hljs-property">next</span>, <span class="hljs-literal">null</span>)<br><br>        node = node.<span class="hljs-property">next</span>.<span class="hljs-property">next</span><br>    &#125;<br><br>    <span class="hljs-keyword">let</span> headCpy = head.<span class="hljs-property">next</span><br><br>    node = head<br>    <span class="hljs-keyword">while</span> (node) &#123;<br>        <span class="hljs-keyword">if</span> (node.<span class="hljs-property">random</span>) &#123;<br>            node.<span class="hljs-property">next</span>.<span class="hljs-property">random</span> = node.<span class="hljs-property">random</span>.<span class="hljs-property">next</span><br>        &#125;<br><br>        node = node.<span class="hljs-property">next</span>.<span class="hljs-property">next</span><br>    &#125;<br><br>    <span class="hljs-keyword">while</span> (head) &#123;<br>        <span class="hljs-keyword">let</span> nodeNext = head.<span class="hljs-property">next</span>.<span class="hljs-property">next</span><br>        <span class="hljs-keyword">if</span> (nodeNext) &#123;<br>            head.<span class="hljs-property">next</span>.<span class="hljs-property">next</span> = nodeNext.<span class="hljs-property">next</span><br>        &#125;<br>        head.<span class="hljs-property">next</span> = nodeNext<br><br>        head = nodeNext<br>    &#125;<br><br>    <span class="hljs-keyword">return</span> headCpy<br>&#125;;<br></code></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> copyRandomList = <span class="hljs-keyword">function</span> (<span class="hljs-params">head</span>) &#123;<br>  <span class="hljs-keyword">if</span> (!head) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span><br>  &#125;<br><br>  <span class="hljs-keyword">let</span> node = head<br><br>  <span class="hljs-keyword">while</span> (node) &#123;<br>    node.<span class="hljs-property">next</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Node</span>(node.<span class="hljs-property">val</span>, node.<span class="hljs-property">next</span>, <span class="hljs-literal">null</span>)<br><br>    node = node.<span class="hljs-property">next</span>.<span class="hljs-property">next</span><br>  &#125;<br><br>  <span class="hljs-keyword">let</span> headCpy = head.<span class="hljs-property">next</span><br><br>  node = head<br>  <span class="hljs-keyword">while</span> (node) &#123;<br>    <span class="hljs-keyword">if</span> (node.<span class="hljs-property">random</span>) &#123;<br>      node.<span class="hljs-property">next</span>.<span class="hljs-property">random</span> = node.<span class="hljs-property">random</span>.<span class="hljs-property">next</span><br>    &#125;<br><br>    node = node.<span class="hljs-property">next</span>.<span class="hljs-property">next</span><br>  &#125;<br><br>  <span class="hljs-keyword">while</span> (head) &#123;<br>    <span class="hljs-keyword">let</span> nodeNext = head.<span class="hljs-property">next</span>.<span class="hljs-property">next</span><br>    <span class="hljs-keyword">if</span> (nodeNext) &#123;<br>      head.<span class="hljs-property">next</span>.<span class="hljs-property">next</span> = nodeNext.<span class="hljs-property">next</span><br>    &#125;<br>    head.<span class="hljs-property">next</span> = nodeNext<br><br>    head = nodeNext<br>  &#125;<br><br>  <span class="hljs-keyword">return</span> headCpy<br>&#125;<br></code></pre></td></tr></table></figure>
 
-
-
-
-    
-        
-        
-        <div class="post-nav">
-            <div class="post-nav-item">
-                
-                    <a href="/2022/02/10/%E4%B8%89%E6%A0%8F%E8%87%AA%E9%80%82%E5%BA%94%E2%80%94%E2%80%94%E5%9C%A3%E6%9D%AF%E5%B8%83%E5%B1%80%E4%B8%8E%E5%8F%8C%E9%A3%9E%E7%BF%BC%E5%B8%83%E5%B1%80/" rel="prev" title="三栏自适应——圣杯布局与双飞翼布局">
-                        <i class="icon-arrow_back_ios"></i>&nbsp;三栏自适应——圣杯布局与双飞翼布局
-                    </a>
-                
-            </div>
-            <div class="post-nav-item">
-                
-                    <a href="/2022/02/08/%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/" rel="next" title="反转链表">
-                        反转链表&nbsp;<i class="icon-arrow_forward_ios"></i>
-                    </a>
-                
-            </div>
-        </div>
-    
-</article>
-
-    </main>
-</div>
-
-<footer class="footer-outer">
-    <div class="footer-inner">
-        <div class="copyright">
-            Copyright © 2021~2022 <a target="_blank" rel="noopener" href="https://github.com/SummerDiver"><i
-                        class="icon-pacmanr"></i>Summer Diver<i class="icon-pacmanl"></i></a> <br>
-            Powered by <a target="_blank" rel="noopener" href="http://hexo.io">Hexo<i class="icon-new-tab"></i></a>
-            <br>
-        </div>
+  
+  
+  
+  <div class="post-nav">
+    <div class="post-nav-item">
+      
+      <a href="/2022/02/10/%E4%B8%89%E6%A0%8F%E8%87%AA%E9%80%82%E5%BA%94%E2%80%94%E2%80%94%E5%9C%A3%E6%9D%AF%E5%B8%83%E5%B1%80%E4%B8%8E%E5%8F%8C%E9%A3%9E%E7%BF%BC%E5%B8%83%E5%B1%80/" rel="prev" title="三栏自适应——圣杯布局与双飞翼布局">
+        <i class="icon-arrow_back_ios"></i>&nbsp;三栏自适应——圣杯布局与双飞翼布局
+      </a>
+      
     </div>
-</footer>
+    <div class="post-nav-item">
+      
+      <a href="/2022/02/08/%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/" rel="next" title="反转链表">
+        反转链表&nbsp;<i class="icon-arrow_forward_ios"></i>
+      </a>
+      
+    </div>
+  </div>
+  
+</article>
+    </main>
+  </div>
 
+  <footer class="footer-outer">
+    <div class="footer-inner">
+      <div class="copyright">
+        Copyright © 2021~2024 <a target="_blank" rel="noopener" href="https://github.com/SummerDiver"><i class="icon-pacmanr"></i>&nbsp;暑熊&nbsp;<i class="icon-pacmanl"></i></a> <br>
+        Powered by <a target="_blank" rel="noopener" href="http://hexo.io">Hexo<i class="icon-new-tab"></i></a>
+        <br>
+      </div>
+    </div>
+  </footer>
 
-    <!-- scripts list from theme config.yml -->
-    
-        <script src="/js/jquery-3.6.0.min.js"></script>
-    
-        <script src="/js/chippy.js"></script>
-    
-        <script src="/js/menubar.js"></script>
-    
-        <script src="/js/toc.js"></script>
-    
-
+  
+  <!-- scripts list from theme config.yml -->
+  
+  <script src="/js/jquery-3.6.0.min.js"></script>
+  
+  <script src="/js/chippy.js"></script>
+  
+  <script src="/js/menubar.js"></script>
+  
+  <script src="/js/toc.js"></script>
+  
+  
 </body>
+
 </html>
