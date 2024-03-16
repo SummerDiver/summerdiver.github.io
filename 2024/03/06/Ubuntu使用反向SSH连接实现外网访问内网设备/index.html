@@ -1,0 +1,260 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Ubuntu 使用 SSH 反向通道实现外网访问内网设备 - 鼠熊部落格</title>
+  
+  <!-- stylesheets list from _config.yml -->
+  
+  <link rel="stylesheet" href="/css/chippy.css">
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <nav class="menu-outer">
+    <div class="menu-inner">
+      
+      <a class="menu-inner-item" href="/">
+        <span class="menu-inner-item-icon"></span>
+        <span class="menu-inner-item-text">首页</span>
+      </a>
+      
+      <a class="menu-inner-item" href="/about">
+        <span class="menu-inner-item-icon"></span>
+        <span class="menu-inner-item-text">关于我</span>
+      </a>
+      
+      <a class="menu-inner-item" href="/archives">
+        <span class="menu-inner-item-icon"></span>
+        <span class="menu-inner-item-text">归档</span>
+      </a>
+      
+    </div>
+  </nav>
+
+  <header class="header-outer">
+    <div class="header-inner">
+      <div class="header-info">
+        
+        <h1 class="header-info-title">
+          Chipmunk &amp; Panda
+        </h1>
+        
+        
+        <h3 class="header-info-subtitle">
+          -- 鼠熊部落格
+        </h3>
+        
+        
+        <p class="header-info-motto">
+          All work and no play makes Jack a dull boy.
+        </p>
+        
+        <div class="header-info-contact">
+          <a target="_blank" rel="noopener" href="https://github.com/SummerDiver" class="header-info-contact-icon">
+            <i class="icon-github"></i>
+          </a>
+          <a target="_blank" rel="noopener" href="https://weibo.com/u/7390819624" class="header-info-contact-icon">
+            <i class="icon-sina-weibo"></i>
+          </a>
+          <a href="mailto:summerdiver@yeah.net" class="header-info-contact-icon">
+            <i class="icon-mail4"></i>
+          </a>
+          <a href="" class="header-info-contact-icon ie" onclick="return false">
+            <i class="icon-IE"></i>
+          </a>
+        </div>
+      </div>
+      <a href="#content" class="header-arrow">
+        <i class="icon-forward2"></i>
+      </a>
+    </div>
+  </header>
+
+  <div id="content" class="content-outer clearfix">
+    <aside id="content-aside" class="content-aside">
+      
+
+<div class="aside-card aside-toc">
+  <h3>文章目录</h3>
+  <div class="toc-content">
+    <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1-%E8%83%8C%E6%99%AF"><span class="post-toc-number">1.</span> <span class="post-toc-text">1 背景</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="post-toc-number">2.</span> <span class="post-toc-text">2 解决方案</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-1-SSH-%E5%8E%9F%E7%94%9F%E5%91%BD%E4%BB%A4"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">2.1 SSH 原生命令</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-2-AutoSSH"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">2.2 AutoSSH</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-3-%E6%9C%8D%E5%8A%A1%E5%8C%96"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">2.3 服务化</span></a></li></ol></li></ol>
+  </div>
+</div>
+
+
+<div class="aside-card aside-ov">
+  <div class="author">
+    <div class="author-avatar">
+      <img src="/images/avatar.jpg">
+    </div>
+    <h4 class="author-name">暑熊</h4>
+    <p class="author-motto">自家慢诩便便腹，开卷方知未读书。</p>
+  </div>
+  <div class="divider-horizontal"></div>
+  <div class="site-state">
+    <a class="site-state-item" href="/archives">
+      <span class="site-state-item-count">22</span>
+      <span class="site-state-item-name">归档</span>
+    </a>
+    <div class="divider-vertical"></div>
+    <a class="site-state-item" href="/categories">
+      <span class="site-state-item-count">5</span>
+      <span class="site-state-item-name">分类</span>
+    </a>
+    <div class="divider-vertical"></div>
+    <a class="site-state-item" href="/tags">
+      <span class="site-state-item-count">17</span>
+      <span class="site-state-item-name">标签</span>
+    </a>
+  </div>
+  <div class="divider-horizontal"></div>
+  <div class="friends">
+    <div>
+      <i class="icon-link"></i>&nbsp;友情链接
+    </div>
+    
+    <div class="no-friends">
+      <span class="icon-tongue"></span><br>
+      <span>朋友都没有，好像一条狗</span>
+    </div>
+    
+    <ul class="friends-list">
+      
+    </ul>
+  </div>
+</div>
+    </aside>
+    <main class="content-inner">
+      <article id="post">
+  <div class="post-header">
+  
+  <h1 class="post-title" href="/2024/03/06/Ubuntu%E4%BD%BF%E7%94%A8%E5%8F%8D%E5%90%91SSH%E8%BF%9E%E6%8E%A5%E5%AE%9E%E7%8E%B0%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AE%E5%86%85%E7%BD%91%E8%AE%BE%E5%A4%87/">Ubuntu 使用 SSH 反向通道实现外网访问内网设备</h1>
+  
+
+  <div class="post-meta">
+    <time class="post-date" datetime="2024-03-06T10:36:11.000Z">
+      <i class="icon-calendar"></i>&nbsp;2024-03-06
+    </time>
+
+    
+    <span class="post-categories">
+      <i class="icon-folder">&nbsp;</i>
+      <a class="post-category-link" href="/categories/%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/">问题记录</a>
+    </span>
+    
+
+    
+    <span class="post-tags">
+      <i class="icon-price-tags">&nbsp;</i>
+      <a class="post-tag-link" href="/tags/Linux/" rel="tag">#Linux</a>&nbsp;<a class="post-tag-link" href="/tags/Ubuntu/" rel="tag">#Ubuntu</a>
+    </span>
+    
+  </div>
+</div>
+  
+  <h1 id="1-背景"><a href="#1-背景" class="headerlink" title="1 背景"></a>1 背景</h1><p>设置三台设备，分别为校园网服务器、家庭网主机、外网云服务器。三台设备均可访问外网，但由于校园网与家庭网互不连通且无公网 IP，相互无法直接访问。现需要借助外网云服务器，实现由家庭网主机访问校园网服务器。</p>
+<h1 id="2-解决方案"><a href="#2-解决方案" class="headerlink" title="2 解决方案"></a>2 解决方案</h1><h2 id="2-1-SSH-原生命令"><a href="#2-1-SSH-原生命令" class="headerlink" title="2.1 SSH 原生命令"></a>2.1 SSH 原生命令</h2><p>SSH 本身支持反向通道，故可以从校园网服务器向外网服务器发起请求，建立一个反向通道，使得家庭网主机可以以外网服务器为跳板，访问校园网服务器。</p>
+<p>假设外网服务器 IP 为 <code>123.123.123.123</code> 且 SSH 端口默认为 22，正常情况下，使用 SSH 以 root 用户访问外网服务器的命令可能为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">ssh root@123.123.123.123<br></code></pre></td></tr></table></figure>
+
+<p>为了建立反向通道，需要在连接时增加选项 <code>-R</code>，该选项用于远程端口转发，允许将远程主机上的端口转发到本地（必须要以 root 用户登录到远程主机）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">ssh -fCNR 12345:localhost:22 root@123.123.123.123<br></code></pre></td></tr></table></figure>
+
+<p>上述代码的含义为：使用 root 用户连接到设备 123.123.123.123，并监听该设备的 12345 端口，将到达该端口的消息转发至 IP 为 localhost 的设备（即本地）的 22 端口。</p>
+<blockquote>
+<p>还额外增加了几个选项：</p>
+<ul>
+<li><code>-f</code>：后台运行 SSH 客户端。</li>
+<li><code>-C</code>：压缩数据传输。</li>
+<li><code>-N</code>：不执行远程命令。</li>
+</ul>
+</blockquote>
+<p>在校园网服务器上运行该代码后，便完成了反向通道的建立，此时，便可以在家庭网主机上通过访问外网服务器的 12346 端口，实现对校园网服务器的访问：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">ssh -p 12345 me@123.123.123.123<br></code></pre></td></tr></table></figure>
+
+<p>最后，建议实现校园网服务器到外网服务器的 SSH 免密登录，以便于在校园网服务器上运行反向通道的命令（否则每次都需要输入密码）。</p>
+<p>在校园网服务器上，执行 <code>ssh-keygen</code> 生成密钥对，并将公钥添加至外网服务器的 <code>~/.ssh/authorized_keys</code> 文件中：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">ssh-keygen<br>ssh-copy-id root@123.123.123.123<br></code></pre></td></tr></table></figure>
+
+<p>即可无密码连接外网服务器。</p>
+<h2 id="2-2-AutoSSH"><a href="#2-2-AutoSSH" class="headerlink" title="2.2 AutoSSH"></a>2.2 AutoSSH</h2><p>可以借助 AutoSSH，自动在反向通道完蛋时重新建立。<br>Ubuntu 下，可以直接安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo apt install autossh<br></code></pre></td></tr></table></figure>
+
+<p>使用方法与 SSH 基本相同，只是多了一个 <code>-M</code> 选项，用于指定监控端口：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">autossh -M 12346 -fCNR 12345:localhost:22 root@123.123.123.123<br></code></pre></td></tr></table></figure>
+
+<p>上述代码的含义为，使用本地端口 12346 监控反向通道的状态，当反向通道断开时，自动执行后面的语句 <code>(ssh) -R 12345:localhost:22 root@</code> 重新建立。</p>
+<h2 id="2-3-服务化"><a href="#2-3-服务化" class="headerlink" title="2.3 服务化"></a>2.3 服务化</h2><p>为了使得反向通道能够在系统启动时自动建立，可以将 AutoSSH 服务化，实现开机自启。</p>
+<blockquote>
+<p>以下内容针对 Ubuntu 22.04，不同版本或其他发行版下操作可能不同。</p>
+</blockquote>
+<p>创建一个新的服务文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo vim /etc/systemd/system/autossh-tunnel.service<br></code></pre></td></tr></table></figure>
+
+<p>文件内容形如：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-section">[Unit]</span><br><span class="hljs-attr">Description</span>=Auto SSH Tunnel<br><span class="hljs-attr">After</span>=network-<span class="hljs-literal">on</span>line.target<br><span class="hljs-attr">Requires</span>=network-<span class="hljs-literal">on</span>line.target<br><br><span class="hljs-section">[Service]</span><br><span class="hljs-attr">User</span>=root<br><span class="hljs-attr">Type</span>=simple<br><span class="hljs-attr">ExecStart</span>=/bin/autossh -M <span class="hljs-number">12346</span> -fCNR <span class="hljs-number">12345</span>:localhost:<span class="hljs-number">22</span> root@<span class="hljs-number">123.123</span>.<span class="hljs-number">123.123</span><br><span class="hljs-attr">ExecReload</span>=/bin/kill -HUP <span class="hljs-variable">$MAINPID</span><br><span class="hljs-attr">KillMode</span>=process<br><br><span class="hljs-section">[Install]</span><br><span class="hljs-attr">WantedBy</span>=multi-user.target<br><span class="hljs-attr">WantedBy</span>=graphical.target<br></code></pre></td></tr></table></figure>
+
+<p>大概注意点包括：</p>
+<ul>
+<li><code>After</code>：依赖网络服务。</li>
+<li><code>Requires</code>：依赖网络服务。</li>
+<li><strong><code>User</code>：服务运行用户。</strong></li>
+<li>ExecStart：服务启动命令。</li>
+<li>ExecReload：服务重载命令。</li>
+</ul>
+<p>可根据需要自行对服务文件进行修改。</p>
+<p>保存文件后，启动服务，并设置开机自启：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo systemctl start autossh-tunnel<br>sudo systemctl <span class="hljs-built_in">enable</span> autossh-tunnel<br></code></pre></td></tr></table></figure>
+
+<p>现在可重启校园网服务器，检查反向通道是否自动建立。</p>
+
+  
+  
+  
+  <div class="post-nav">
+    <div class="post-nav-item">
+      
+    </div>
+    <div class="post-nav-item">
+      
+      <a href="/2024/03/02/Ubuntu%E5%BC%80%E6%9C%BA%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BD%E7%A1%AC%E7%9B%98%E8%87%B3%E6%8C%87%E5%AE%9A%E4%BD%8D%E7%BD%AE/" rel="next" title="Ubuntu 开机自动挂载硬盘至指定位置">
+        Ubuntu 开机自动挂载硬盘至指定位置&nbsp;<i class="icon-arrow_forward_ios"></i>
+      </a>
+      
+    </div>
+  </div>
+  
+</article>
+    </main>
+  </div>
+
+  <footer class="footer-outer">
+    <div class="footer-inner">
+      <div class="copyright">
+        Copyright © 2021~2024 <a target="_blank" rel="noopener" href="https://github.com/SummerDiver"><i class="icon-pacmanr"></i>&nbsp;暑熊&nbsp;<i class="icon-pacmanl"></i></a> <br>
+        Powered by <a target="_blank" rel="noopener" href="http://hexo.io">Hexo<i class="icon-new-tab"></i></a>
+        <br>
+      </div>
+    </div>
+  </footer>
+
+  
+  <!-- scripts list from theme config.yml -->
+  
+  <script src="/js/jquery-3.6.0.min.js"></script>
+  
+  <script src="/js/chippy.js"></script>
+  
+  <script src="/js/menubar.js"></script>
+  
+  <script src="/js/toc.js"></script>
+  
+  
+</body>
+
+</html>

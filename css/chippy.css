@@ -999,6 +999,9 @@ img
   transform: rotate(0deg);
   transition: transform 0.5s;
 }
+.ie {
+  transition: transform 5s;
+}
 .header-info-contact-icon:hover {
   transform: rotate(360deg);
 }
